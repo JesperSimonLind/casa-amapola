@@ -11,8 +11,13 @@ import { MotionStagger, MotionStaggerItem } from "./MotionReveal";
 import heroDesktop from "../assets/hero/hero-desktop.png";
 import heroMobile from "../assets/hero/hero-mobile.png";
 import Menu from "./Menu";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function Hero() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Box
       id="home"
@@ -81,7 +86,7 @@ function Hero() {
                   color: "rgba(255,255,255,0.88)",
                 }}
               >
-                Welcome to
+                {t.hero.welcome}
               </Typography>
             </MotionStaggerItem>
 
@@ -123,8 +128,7 @@ function Hero() {
                   color: "rgba(255,255,255,0.9)",
                 }}
               >
-                A charming Bed & Breakfast in the heart of Alora, Andalusia,
-                Spain.
+                {t.hero.description}
               </Typography>
             </MotionStaggerItem>
 
@@ -174,7 +178,7 @@ function Hero() {
                     },
                   }}
                 >
-                  Explore rooms
+                  {t.hero.exploreRooms}
                 </Button>
               </Box>
             </MotionStaggerItem>

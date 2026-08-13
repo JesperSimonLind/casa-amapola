@@ -13,28 +13,18 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import logoImage from "../assets/logo.png";
-
-const menuItems = [
-  { label: "Home", href: "#home" },
-  { label: "About us", href: "#about-us" },
-  { label: "Rooms", href: "#rooms" },
-  { label: "Services", href: "#services" },
-  { label: "Area", href: "#area" },
-  { label: "Contact", href: "#contact" },
-];
-
-const languageOptions = [
-  { value: "English", label: "English", flag: "🇬🇧" },
-  { value: "Spanish", label: "Spanish", flag: "🇪🇸" },
-  { value: "Swedish", label: "Swedish", flag: "🇸🇪" },
-];
+import { useLanguage } from "../context/LanguageContext";
+import { languageOptions, translations } from "../i18n/translations";
 
 function Menu() {
-  const [language, setLanguage] = React.useState("English");
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const handleLanguageChange = (event: SelectChangeEvent) => {
-    setLanguage(event.target.value);
+    setLanguage(
+      event.target.value as (typeof languageOptions)[number]["value"],
+    );
   };
 
   const closeMobileMenu = () => {
@@ -126,7 +116,7 @@ function Menu() {
           minWidth: 0,
         }}
       >
-        {menuItems.map((item) => (
+        {t.menuItems.map((item) => (
           <ListItem key={item.href} disablePadding sx={{ width: "auto" }}>
             <Link
               href={item.href}
@@ -224,7 +214,7 @@ function Menu() {
               fontWeight: 600,
             }}
           >
-            MENU
+            {t.menuHeading}
           </Box>
           <IconButton
             aria-label="Close menu"
@@ -236,7 +226,7 @@ function Menu() {
         </Box>
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 0.25 }}>
-          {menuItems.map((item) => (
+          {t.menuItems.map((item) => (
             <Button
               key={item.href}
               href={item.href}

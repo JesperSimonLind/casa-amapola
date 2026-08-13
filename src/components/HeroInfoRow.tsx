@@ -4,15 +4,16 @@ import Box from "@mui/material/Box";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Typography from "@mui/material/Typography";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
-const items = [
+const itemTemplates = [
   {
     icon: (
       <BedOutlinedIcon
         sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
       />
     ),
-    label: "4 Unique rooms",
   },
   {
     icon: (
@@ -20,7 +21,6 @@ const items = [
         sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
       />
     ),
-    label: "Rooftop terrace",
   },
   {
     icon: (
@@ -28,11 +28,17 @@ const items = [
         sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
       />
     ),
-    label: "30 min from Malaga",
   },
 ];
 
 function HeroInfoRow() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const items = itemTemplates.map((item, index) => ({
+    ...item,
+    label: t.heroInfoItems[index],
+  }));
+
   return (
     <Box
       sx={{

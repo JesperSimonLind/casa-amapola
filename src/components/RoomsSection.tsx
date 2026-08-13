@@ -9,51 +9,19 @@ import room2 from "../assets/rooms/room-2.jpg";
 import room3 from "../assets/rooms/room-3.jpg";
 import room4 from "../assets/rooms/room-4.jpg";
 import RoomCard from "./RoomCard";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
-const rooms = [
-  {
-    image: room1,
-    title: "Hanoi",
-    description:
-      "Our family suite inspired by the Aegean Sea with space for the whole family",
-    guests: "2 Guests",
-    bed: "1 Bed (1 double 160 x 200 cm)",
-    size: "11 m²",
-    price: "€75-€85",
-  },
-  {
-    image: room2,
-    title: "Aegean Sea",
-    description:
-      "Our family suite inspired by the Aegean Sea with space for the whole family",
-    guests: "2 Guests",
-    bed: "1 Bed (1 double 160 x 200 cm)",
-    size: "12 m²",
-    price: "€80-€90",
-  },
-  {
-    image: room3,
-    title: "Andalucia",
-    description:
-      "Our family suite inspired by the Aegean Sea with space for the whole family",
-    guests: "2 Guests",
-    bed: "1 Bed (1 double 160 x 200 cm)",
-    size: "13 m²",
-    price: "€85-€95",
-  },
-  {
-    image: room4,
-    title: "Pequeña Escandinavia",
-    description:
-      "A refined stay with natural materials, soft light, and a countryside feel.",
-    guests: "2 Guests",
-    bed: "1 Bed (1 double 160 x 200 cm)",
-    size: "14 m²",
-    price: "€90-€110",
-  },
-];
+const roomImages = [room1, room2, room3, room4];
 
 function RoomsSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const rooms = t.rooms.list.map((room, index) => ({
+    ...room,
+    image: roomImages[index],
+  }));
+
   return (
     <Box
       component="section"
@@ -74,7 +42,7 @@ function RoomsSection() {
               mb: { xs: 3, md: 4 },
             }}
           >
-            OUR ROOMS
+            {t.rooms.overline}
           </Typography>
         </MotionReveal>
 
@@ -104,7 +72,11 @@ function RoomsSection() {
           >
             {rooms.map((room) => (
               <MotionStaggerItem key={room.title}>
-                <RoomCard {...room} />
+                <RoomCard
+                  {...room}
+                  fromLabel={t.rooms.from}
+                  nightLabel={t.rooms.night}
+                />
               </MotionStaggerItem>
             ))}
           </Box>

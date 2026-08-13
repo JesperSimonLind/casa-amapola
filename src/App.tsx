@@ -7,18 +7,21 @@ import Hero from "./components/Hero";
 import PreFooterSection from "./components/PreFooterSection";
 import RoomsSection from "./components/RoomsSection";
 import ServicesSection from "./components/ServicesSection";
+import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   return (
-    <MotionConfig reducedMotion="user">
-      <Hero />
-      <About />
-      <RoomsSection />
-      <AreaSection />
-      <ServicesSection />
-      <PreFooterSection />
-      <Footer />
-    </MotionConfig>
+    <LanguageProvider>
+      <MotionConfig reducedMotion="user">
+        <Hero />
+        <About />
+        <RoomsSection />
+        <AreaSection />
+        <ServicesSection />
+        <PreFooterSection />
+        <Footer />
+      </MotionConfig>
+    </LanguageProvider>
   );
 }
 

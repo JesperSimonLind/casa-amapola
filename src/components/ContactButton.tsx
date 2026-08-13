@@ -1,7 +1,12 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function ContactButton() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Button
       href="#contact"
@@ -25,7 +30,7 @@ function ContactButton() {
         },
       }}
     >
-      Contact us
+      {t.contactButton}
     </Button>
   );
 }

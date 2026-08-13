@@ -16,6 +16,8 @@ export type RoomCardProps = {
   bed: string;
   size: string;
   price: string;
+  fromLabel: string;
+  nightLabel: string;
 };
 
 function RoomCard({
@@ -26,6 +28,8 @@ function RoomCard({
   bed,
   size,
   price,
+  fromLabel,
+  nightLabel,
 }: RoomCardProps) {
   return (
     <Card
@@ -131,7 +135,7 @@ function RoomCard({
           }}
         >
           <Typography sx={{ fontSize: "0.84rem", color: "#2F2C2A" }}>
-            From
+            {fromLabel}
           </Typography>
           <Typography
             sx={{ fontSize: "1.4rem", color: "#1D1B19", fontWeight: 600 }}
@@ -139,7 +143,7 @@ function RoomCard({
             {price}
           </Typography>
           <Typography sx={{ fontSize: "0.84rem", color: "#2F2C2A" }}>
-            /night
+            {nightLabel}
           </Typography>
         </Box>
       </Box>

@@ -12,36 +12,24 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
 import MotionReveal from "./MotionReveal";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 type ServiceItem = {
-  title: string;
-  description: string;
   icon: React.ReactNode;
-  emphasized?: boolean;
 };
 
 const services: ServiceItem[] = [
   {
-    title: "Four Rooms",
-    description:
-      "Four rooms during spring and summer. Three rooms during autumn and winter. See each room for number of beds.",
     icon: <WeekendOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    title: "TV & Telephone",
-    description: "No TV or telephone in the rooms. Enjoy each other :-)",
     icon: <PhoneDisabledOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    title: "Air Conditioning",
-    description:
-      "All rooms have AC for warm summer days and heating for cool winter days.",
     icon: <AcUnitOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    title: "Beach Towels",
-    description:
-      "We also offer beach towels for your relaxing days at the beach or lakes.",
     icon: (
       <LocalLaundryServiceOutlinedIcon
         sx={{ fontSize: 24, color: "#2F2F2F" }}
@@ -49,41 +37,32 @@ const services: ServiceItem[] = [
     ),
   },
   {
-    title: "Tea & Coffee",
-    description:
-      "Tea and coffee are available whenever you wish in the shared kitchen.",
     icon: <CoffeeOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    title: "Family Room",
-    description:
-      "One of the rooms is a family room with space for four people.",
     icon: (
       <FamilyRestroomOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />
     ),
   },
   {
-    title: "Free Wi-Fi",
-    description:
-      "Free access to WiFi in the whole area of the Bed & Breakfast.",
     icon: <WifiIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    title: "Bathroom Essentials",
-    description:
-      "Hair-dryer, shampoo, shower gel, towels, robe and slippers in all rooms.",
     icon: <CountertopsOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
-    emphasized: true,
   },
   {
-    title: "Shared Kitchen",
-    description:
-      "Fully equipped kitchen for you to prepare your own lunch and/or dinner.",
     icon: <CountertopsOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
 ];
 
 function ServicesSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const localizedServices = services.map((service, index) => ({
+    ...service,
+    ...t.services.list[index],
+  }));
+
   return (
     <Box
       component="section"
@@ -105,7 +84,7 @@ function ServicesSection() {
               fontWeight: 600,
             }}
           >
-            OUR SERVICES
+            {t.services.overline}
           </Typography>
         </MotionReveal>
 
@@ -129,7 +108,7 @@ function ServicesSection() {
             },
           }}
         >
-          {services.map((service) => (
+          {localizedServices.map((service) => (
             <Box
               key={service.title}
               component={motion.div}

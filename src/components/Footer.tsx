@@ -4,8 +4,13 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Box
       component="footer"
@@ -70,10 +75,10 @@ function Footer() {
           }}
         >
           <Typography sx={{ color: "#E7E4D8", fontSize: "1.18rem", mb: 0.8 }}>
-            MAKE A RESERVATION
+            {t.footer.reservationTitle}
           </Typography>
           <Typography sx={{ color: "#D6D2C3", fontSize: "0.94rem", mb: 0.2 }}>
-            Book your stay easily through
+            {t.footer.reservationText}
           </Typography>
           <Link
             component={motion.a}
@@ -108,7 +113,7 @@ function Footer() {
 
         <Box sx={{ pl: { sm: 2 } }}>
           <Typography sx={{ color: "#E7E4D8", fontSize: "1.08rem", mb: 0.9 }}>
-            FOLLOW US
+            {t.footer.followUs}
           </Typography>
           <Link
             href="https://www.instagram.com/amapolaalhaurin"
@@ -142,7 +147,7 @@ function Footer() {
       >
         <Box
           component="iframe"
-          title="Casa Amapola on Google Maps"
+          title={t.footer.mapTitle}
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7044.482974363632!2d-4.691286!3d36.643718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72e7004687711f%3A0x1a2bbc501c461810!2sCasa%20Amapola!5e1!3m2!1ssv!2sse!4v1786618772868!5m2!1ssv!2sse"
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"

@@ -7,8 +7,13 @@ import MotionReveal from "./MotionReveal";
 import about1 from "../assets/about/about-1.jpg";
 import about2 from "../assets/about/about-2.jpg";
 import about3 from "../assets/about/about-3.jpg";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function About() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Box
       component="section"
@@ -40,7 +45,7 @@ function About() {
                   color: "#2F2C2A",
                 }}
               >
-                ABOUT US
+                {t.about.overline}
               </Typography>
 
               <Typography
@@ -57,13 +62,13 @@ function About() {
                   component="span"
                   sx={{ display: "block", whiteSpace: "nowrap" }}
                 >
-                  Living life on the
+                  {t.about.titleLine1}
                 </Box>
                 <Box
                   component="span"
                   sx={{ display: "block", whiteSpace: "nowrap" }}
                 >
-                  Sunshine side
+                  {t.about.titleLine2}
                 </Box>
               </Typography>
 
@@ -76,10 +81,7 @@ function About() {
                     mb: 2,
                   }}
                 >
-                  Casa Amapola is a charming boutique bed & breakfast in the
-                  heart of Alhaurín el Grande. Stay in one of our four
-                  thoughtfully designed rooms and experience authentic
-                  Andalusian hospitality.
+                  {t.about.paragraph1}
                 </Typography>
 
                 <Typography
@@ -90,9 +92,7 @@ function About() {
                     mb: 2,
                   }}
                 >
-                  Relax on our rooftop terrace overlooking the beautiful
-                  Guadalhorce Valley, just moments from the town&apos;s cafés,
-                  tapas bars, and local atmosphere.
+                  {t.about.paragraph2}
                 </Typography>
 
                 <Typography
@@ -102,9 +102,7 @@ function About() {
                     color: "#2F2C2A",
                   }}
                 >
-                  A peaceful retreat where traditional Spanish charm meets
-                  modern comfort, offering a warm and memorable stay in the
-                  heart of Andalusia.
+                  {t.about.paragraph3}
                 </Typography>
               </Box>
             </Box>

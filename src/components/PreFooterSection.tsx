@@ -4,8 +4,13 @@ import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
 
 import ownersImage from "../assets/owners.jpg";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function PreFooterSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Box component="section" id="contact" sx={{ backgroundColor: "#FCF9F5" }}>
       <Box
@@ -40,7 +45,7 @@ function PreFooterSection() {
               fontWeight: 600,
             }}
           >
-            EXTRAS
+            {t.preFooter.extrasTitle}
           </Typography>
 
           <Typography
@@ -51,8 +56,7 @@ function PreFooterSection() {
               mb: 2,
             }}
           >
-            Enquiries for more specific reservations such as planning your stay
-            and activities or added guests in your room please contact us.
+            {t.preFooter.extrasParagraph1}
           </Typography>
 
           <Typography
@@ -63,16 +67,13 @@ function PreFooterSection() {
               mb: 2,
             }}
           >
-            We are happy to make your stay at Casa Amapola and Alhaurín el
-            Grande as pleasant as possible and can help with reservations to
-            local restaurants, bodegas and tours.
+            {t.preFooter.extrasParagraph2}
           </Typography>
 
           <Typography
             sx={{ fontSize: "0.96rem", lineHeight: 1.8, color: "#2F2C2A" }}
           >
-            We can also advise on our preferred car hire and help you with
-            airport transfer.
+            {t.preFooter.extrasParagraph3}
           </Typography>
         </Box>
 
@@ -117,7 +118,7 @@ function PreFooterSection() {
               fontWeight: 600,
             }}
           >
-            ABOUT YOUR HOSTS
+            {t.preFooter.hostsTitle}
           </Typography>
 
           <Typography
@@ -128,7 +129,7 @@ function PreFooterSection() {
               mb: 1.8,
             }}
           >
-            We are Richard and BLANK, your hosts at Casa Amapola.
+            {t.preFooter.hostsParagraph1}
           </Typography>
 
           <Typography
@@ -139,8 +140,7 @@ function PreFooterSection() {
               mb: 1.8,
             }}
           >
-            Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem
-            ipsum lorem ipsum.
+            {t.preFooter.hostsParagraph2}
           </Typography>
 
           <Typography
@@ -151,14 +151,13 @@ function PreFooterSection() {
               mb: 1.8,
             }}
           >
-            We are happy to help you with tips and recommendations to make your
-            stay unforgettable.
+            {t.preFooter.hostsParagraph3}
           </Typography>
 
           <Typography
             sx={{ fontSize: "1.32rem", color: "#7D7A72", textAlign: "right" }}
           >
-            / Richard & BLANK
+            {t.preFooter.hostsSignature}
           </Typography>
         </Box>
       </Box>

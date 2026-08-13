@@ -11,18 +11,16 @@ import beachesImage from "../assets/area/beaches.jpg";
 import dayTripsImage from "../assets/area/day-trips.jpg";
 import foodWineImage from "../assets/area/food-wine.jpg";
 import natureHikingImage from "../assets/area/nature-hiking.jpg";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../i18n/translations";
 
 type AreaCard = {
-  title: string;
-  description: string;
   image: string;
   icon: React.ReactNode;
 };
 
 const areaCards: AreaCard[] = [
   {
-    title: "Nature & Hiking",
-    description: "Mountains, trails and breathtaking views",
     image: natureHikingImage,
     icon: (
       <HikingOutlinedIcon
@@ -31,8 +29,6 @@ const areaCards: AreaCard[] = [
     ),
   },
   {
-    title: "Beaches",
-    description: "Sunny beach close by",
     image: beachesImage,
     icon: (
       <BeachAccessIcon
@@ -41,8 +37,6 @@ const areaCards: AreaCard[] = [
     ),
   },
   {
-    title: "Food & Wine",
-    description: "Tapas, restaurants and local vineyards",
     image: foodWineImage,
     icon: (
       <LiquorOutlinedIcon
@@ -51,8 +45,6 @@ const areaCards: AreaCard[] = [
     ),
   },
   {
-    title: "Day Trips",
-    description: "Museums and beautiful villages",
     image: dayTripsImage,
     icon: (
       <MuseumOutlinedIcon
@@ -63,6 +55,14 @@ const areaCards: AreaCard[] = [
 ];
 
 function AreaSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  const cards = areaCards.map((card, index) => ({
+    ...card,
+    title: t.area.cards[index].title,
+    description: t.area.cards[index].description,
+  }));
+
   return (
     <Box
       component="section"
@@ -92,7 +92,7 @@ function AreaSection() {
                 fontWeight: 600,
               }}
             >
-              EXPLORE THE AREA
+              {t.area.overline}
             </Typography>
 
             <Typography
@@ -104,7 +104,7 @@ function AreaSection() {
                 fontWeight: 400,
               }}
             >
-              Alhaurín el Grande & Andalusia
+              {t.area.title}
             </Typography>
 
             <Typography
@@ -115,8 +115,7 @@ function AreaSection() {
                 mb: 2,
               }}
             >
-              A charming Spanish town at the foot of the Mijas mountains,
-              surrounded by nature, history and culture.
+              {t.area.paragraph1}
             </Typography>
 
             <Typography
@@ -126,8 +125,7 @@ function AreaSection() {
                 color: "#2F2C2A",
               }}
             >
-              From beautiful beaches and mountain hikes to traditional villages,
-              local markets and restaurants, everything is within easy reach.
+              {t.area.paragraph2}
             </Typography>
           </Box>
 
@@ -142,7 +140,7 @@ function AreaSection() {
               gap: { xs: 2, md: 2.2 },
             }}
           >
-            {areaCards.map((card) => (
+            {cards.map((card) => (
               <Box
                 key={card.title}
                 sx={{
