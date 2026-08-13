@@ -10,6 +10,8 @@ import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { motion } from "motion/react";
+import MotionReveal from "./MotionReveal";
 
 type ServiceItem = {
   title: string;
@@ -92,18 +94,20 @@ function ServicesSection() {
       }}
     >
       <Container maxWidth="xl">
-        <Typography
-          sx={{
-            textAlign: "center",
-            color: "#2F2C2A",
-            fontSize: "0.9rem",
-            letterSpacing: "0.09em",
-            mb: { xs: 3, md: 2.5 },
-            fontWeight: 600,
-          }}
-        >
-          OUR SERVICES
-        </Typography>
+        <MotionReveal>
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "#2F2C2A",
+              fontSize: "0.9rem",
+              letterSpacing: "0.09em",
+              mb: { xs: 3, md: 2.5 },
+              fontWeight: 600,
+            }}
+          >
+            OUR SERVICES
+          </Typography>
+        </MotionReveal>
 
         <Box
           sx={{
@@ -128,6 +132,9 @@ function ServicesSection() {
           {services.map((service) => (
             <Box
               key={service.title}
+              component={motion.div}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
               sx={{
                 flex: {
                   xs: "0 0 84%",
@@ -139,12 +146,19 @@ function ServicesSection() {
                 px: { xs: 1.2, md: 2.25 },
                 py: { xs: 1.4, md: 2.4 },
                 backgroundColor: service.emphasized ? "#FBF8F5" : "#FCF9F5",
-                border: { xs: "1px solid #EFE8DF", md: "1px solid #F4EEE7" },
+                border: {
+                  xs: "1px solid #EFE8DF",
+                  md: "1px solid #F4EEE7",
+                },
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 maxWidth: { lg: "calc((100% - 64px) / 5)" },
+                boxShadow: "0 10px 22px rgba(46, 38, 28, 0.04)",
+                "&:hover": {
+                  boxShadow: "0 20px 42px rgba(46, 38, 28, 0.1)",
+                },
               }}
             >
               <Box

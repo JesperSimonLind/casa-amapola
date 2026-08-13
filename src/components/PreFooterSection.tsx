@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { motion } from "motion/react";
 
 import ownersImage from "../assets/owners.jpg";
 
@@ -16,6 +17,11 @@ function PreFooterSection() {
         }}
       >
         <Box
+          component={motion.div}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           sx={{
             backgroundColor: "#ECE8DC",
             px: { xs: 3, md: 4 },
@@ -71,7 +77,11 @@ function PreFooterSection() {
         </Box>
 
         <Box
-          component="img"
+          component={motion.img}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           src={ownersImage}
           alt="Hosts at Casa Amapola"
           sx={{
@@ -84,6 +94,11 @@ function PreFooterSection() {
         />
 
         <Box
+          component={motion.div}
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
           sx={{
             backgroundColor: "#F1ECE4",
             px: { xs: 3, md: 4 },

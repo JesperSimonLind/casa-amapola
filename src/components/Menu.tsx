@@ -165,6 +165,7 @@ function Menu() {
               value={language}
               onChange={handleLanguageChange}
               aria-label="Select language"
+              MenuProps={{ disableScrollLock: true }}
               renderValue={(selected) => {
                 const selectedLanguage = languageOptions.find(
                   (option) => option.value === selected,
@@ -260,7 +261,7 @@ function Menu() {
             size="small"
             sx={{
               mt: 1.4,
-              minWidth: 150,
+              width: "100%",
               maxWidth: 190,
               "& .MuiInputBase-root": {
                 color: "#F1EEDC",
@@ -279,6 +280,16 @@ function Menu() {
               value={language}
               onChange={handleLanguageChange}
               aria-label="Select language"
+              MenuProps={{
+                disableScrollLock: true,
+                slotProps: {
+                  paper: {
+                    sx: {
+                      maxWidth: "calc(100vw - 32px)",
+                    },
+                  },
+                },
+              }}
               renderValue={(selected) => {
                 const selectedLanguage = languageOptions.find(
                   (option) => option.value === selected,

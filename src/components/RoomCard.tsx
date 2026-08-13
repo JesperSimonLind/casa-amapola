@@ -3,6 +3,7 @@ import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
+import { motion } from "motion/react";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SquareFootOutlinedIcon from "@mui/icons-material/SquareFootOutlined";
 import Typography from "@mui/material/Typography";
@@ -28,16 +29,22 @@ function RoomCard({
 }: RoomCardProps) {
   return (
     <Card
+      component={motion.article}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
       sx={{
         width: "100%",
         borderRadius: 0,
         overflow: "hidden",
         backgroundColor: "#F7F4F1",
-        boxShadow: "none",
+        boxShadow: "0 10px 28px rgba(46, 38, 28, 0.06)",
         border: "1px solid rgba(53, 53, 53, 0.08)",
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        "&:hover": {
+          boxShadow: "0 24px 48px rgba(46, 38, 28, 0.14)",
+        },
       }}
     >
       <CardMedia

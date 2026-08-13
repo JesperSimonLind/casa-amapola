@@ -1,4 +1,5 @@
 import * as React from "react";
+import { MotionConfig } from "motion/react";
 import About from "./components/About";
 import AreaSection from "./components/AreaSection";
 import Footer from "./components/Footer";
@@ -9,7 +10,7 @@ import ServicesSection from "./components/ServicesSection";
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Hero />
       <About />
       <RoomsSection />
@@ -17,7 +18,7 @@ function App() {
       <ServicesSection />
       <PreFooterSection />
       <Footer />
-    </>
+    </MotionConfig>
   );
 }
 

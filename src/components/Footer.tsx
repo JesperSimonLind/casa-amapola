@@ -3,6 +3,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import { motion } from "motion/react";
 
 function Footer() {
   return (
@@ -75,10 +76,13 @@ function Footer() {
             Book your stay easily through
           </Typography>
           <Link
+            component={motion.a}
             href="https://www.booking.com/hotel/es/casa-amapola-alhaurin-el-grande.sv.html?aid=304142&checkin=2024-08-09&checkout=2024-08-12&dest_id=-370199&dest_type=city&group_adults=2&group_children=0&label=gen173nr-1BCAEoggI46AdIM1gEaEaIAQKYAQm4ARjIARHYAQHoAQGIAgGoAgS4ArGQ6LQGwAIB0gIkYWEzM2M3NmEtZmRlNC00ZWYzLWE4NTgtMTYyNGRhM2M3ZWY02AIF4AIB-Share-KvyqHx%401721370970&no_rooms=1&req_adults=2&req_children=0&chal_t=1786619631022&force_referer=https%3A%2F%2Fwidershadeofpale.casaamapola.nu%2F"
             target="_blank"
             rel="noopener noreferrer"
             underline="none"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             sx={{
               mt: 0.8,
               width: "fit-content",
@@ -87,6 +91,7 @@ function Footer() {
               py: 0.6,
               backgroundColor: "#454537",
               display: "inline-block",
+              transformOrigin: "center",
             }}
           >
             <Typography
