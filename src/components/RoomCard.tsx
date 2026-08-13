@@ -29,7 +29,7 @@ function RoomCard({
   return (
     <Card
       sx={{
-        width: { xs: "100%", sm: 260 },
+        width: "100%",
         borderRadius: 0,
         overflow: "hidden",
         backgroundColor: "#F7F4F1",
@@ -45,7 +45,7 @@ function RoomCard({
         image={image}
         alt={title}
         sx={{
-          height: 180,
+          height: { xs: 205, sm: 180 },
           width: "100%",
           objectFit: "cover",
           display: "block",
@@ -64,12 +64,12 @@ function RoomCard({
       >
         <Typography
           sx={{
-            fontSize: "1.45rem",
+            fontSize: { xs: "1.8rem", sm: "1.45rem" },
             fontWeight: 500,
             color: "#1D1B19",
             lineHeight: 1.2,
             mb: 1,
-            minHeight: { xs: 28, sm: 56 },
+            minHeight: { xs: 78, sm: 56 },
             display: "flex",
             alignItems: "flex-end",
           }}
@@ -80,7 +80,7 @@ function RoomCard({
         <Typography
           sx={{
             color: "#2F2C2A",
-            fontSize: "0.92rem",
+            fontSize: { xs: "0.84rem", sm: "0.92rem" },
             lineHeight: 1.6,
             minHeight: { xs: 44, sm: 88 },
           }}

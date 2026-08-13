@@ -107,27 +107,34 @@ function ServicesSection() {
 
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: { xs: 1.5, md: 2 },
+            display: { xs: "flex", sm: "grid" },
+            gridTemplateColumns: {
+              sm: "repeat(2, minmax(0, 1fr))",
+              lg: "repeat(5, minmax(0, 1fr))",
+            },
+            gap: { xs: 2, md: 2 },
+            overflowX: { xs: "auto", sm: "visible" },
+            scrollSnapType: { xs: "x mandatory", sm: "none" },
+            px: { xs: 0.2, sm: 0 },
+            pb: { xs: 1, sm: 0 },
+            scrollbarWidth: { xs: "none", sm: "auto" },
+            msOverflowStyle: { xs: "none", sm: "auto" },
+            "&::-webkit-scrollbar": {
+              display: { xs: "none", sm: "initial" },
+            },
           }}
         >
           {services.map((service) => (
             <Box
               key={service.title}
               sx={{
-                flex: {
-                  xs: "1 1 100%",
-                  sm: "0 1 calc(50% - 8px)",
-                  lg: "0 1 calc((100% - 8rem) / 5)",
-                },
-                maxWidth: { xs: "100%", lg: 245 },
-                minHeight: { xs: 164, md: 186 },
-                px: 2.25,
-                py: 2.4,
+                flex: { xs: "0 0 84%", sm: "none" },
+                scrollSnapAlign: { xs: "start", sm: "none" },
+                minHeight: { xs: 158, md: 186 },
+                px: { xs: 1.2, md: 2.25 },
+                py: { xs: 1.4, md: 2.4 },
                 backgroundColor: service.emphasized ? "#FBF8F5" : "#FCF9F5",
-                border: "1px solid #F4EEE7",
+                border: { xs: "1px solid #EFE8DF", md: "1px solid #F4EEE7" },
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -136,10 +143,10 @@ function ServicesSection() {
             >
               <Box
                 sx={{
-                  height: 28,
+                  height: { xs: 25, md: 28 },
                   display: "flex",
                   alignItems: "center",
-                  mb: 1.25,
+                  mb: { xs: 0.7, md: 1.25 },
                 }}
               >
                 {service.icon}
@@ -148,11 +155,11 @@ function ServicesSection() {
               <Typography
                 sx={{
                   color: "#2F2C2A",
-                  fontSize: "1.08rem",
+                  fontSize: { xs: "0.92rem", md: "1.08rem" },
                   lineHeight: 1.2,
-                  mb: 1,
+                  mb: { xs: 0.45, md: 1 },
                   fontWeight: 500,
-                  minHeight: 42,
+                  minHeight: { xs: 36, md: 42 },
                   display: "flex",
                   alignItems: "flex-end",
                 }}
@@ -163,10 +170,10 @@ function ServicesSection() {
               <Typography
                 sx={{
                   color: "#403F3C",
-                  fontSize: "0.86rem",
-                  lineHeight: 1.55,
-                  maxWidth: 170,
-                  minHeight: 80,
+                  fontSize: { xs: "0.76rem", md: "0.86rem" },
+                  lineHeight: { xs: 1.45, md: 1.55 },
+                  maxWidth: { xs: 142, md: 170 },
+                  minHeight: { xs: 68, md: 80 },
                 }}
               >
                 {service.description}

@@ -7,15 +7,27 @@ import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 
 const items = [
   {
-    icon: <BedOutlinedIcon sx={{ fontSize: 20, color: "#fff" }} />,
+    icon: (
+      <BedOutlinedIcon
+        sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
+      />
+    ),
     label: "4 Unique rooms",
   },
   {
-    icon: <WbSunnyOutlinedIcon sx={{ fontSize: 20, color: "#fff" }} />,
+    icon: (
+      <WbSunnyOutlinedIcon
+        sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
+      />
+    ),
     label: "Rooftop terrace",
   },
   {
-    icon: <LocationOnOutlinedIcon sx={{ fontSize: 20, color: "#fff" }} />,
+    icon: (
+      <LocationOnOutlinedIcon
+        sx={{ fontSize: { xs: 26, md: 20 }, color: { xs: "#333", md: "#fff" } }}
+      />
+    ),
     label: "30 min from Malaga",
   },
 ];
@@ -25,22 +37,41 @@ function HeroInfoRow() {
     <Box
       sx={{
         display: "flex",
-        flexWrap: "wrap",
-        gap: 3,
-        mt: "48px",
+        flexWrap: { xs: "nowrap", md: "wrap" },
+        gap: { xs: 0, md: 3 },
+        mt: { xs: 2.4, md: "48px" },
+        backgroundColor: { xs: "#FBF8F5", md: "transparent" },
+        color: { xs: "#2F2C2A", md: "#fff" },
+        borderRadius: { xs: "16px 16px 0 0", md: 0 },
+        overflow: "hidden",
+        border: { xs: "1px solid #ECE6DD", md: "none" },
       }}
     >
       {items.map((item) => (
         <Box
           key={item.label}
-          sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: { xs: 0.8, md: 1.5 },
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
+            textAlign: "center",
+            px: { xs: 1.2, md: 0 },
+            py: { xs: 1.35, md: 0 },
+            flex: { xs: "1 1 0", md: "0 0 auto" },
+            borderRight: { xs: "1px solid #EFE9DF", md: "none" },
+            "&:last-of-type": {
+              borderRight: "none",
+            },
+          }}
         >
           <Box
             sx={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.8)",
+              width: { xs: 30, md: 40 },
+              height: { xs: 30, md: 40 },
+              borderRadius: { xs: 0, md: "50%" },
+              border: { xs: "none", md: "1px solid rgba(255,255,255,0.8)" },
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -49,7 +80,13 @@ function HeroInfoRow() {
             {item.icon}
           </Box>
           <Typography
-            sx={{ color: "#fff", fontWeight: 500, fontSize: "0.98rem" }}
+            sx={{
+              color: { xs: "#4A4742", md: "#fff" },
+              fontWeight: { xs: 500, md: 500 },
+              fontSize: { xs: "0.72rem", md: "0.98rem" },
+              lineHeight: 1.25,
+              maxWidth: { xs: 88, md: "none" },
+            }}
           >
             {item.label}
           </Typography>

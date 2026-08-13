@@ -24,25 +24,41 @@ const areaCards: AreaCard[] = [
     title: "Nature & Hiking",
     description: "Mountains, trails and breathtaking views",
     image: natureHikingImage,
-    icon: <HikingOutlinedIcon sx={{ fontSize: 18, color: "#4A4A4A" }} />,
+    icon: (
+      <HikingOutlinedIcon
+        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
+      />
+    ),
   },
   {
     title: "Beaches",
     description: "Sunny beach close by",
     image: beachesImage,
-    icon: <UmbrellaOutlinedIcon sx={{ fontSize: 18, color: "#4A4A4A" }} />,
+    icon: (
+      <UmbrellaOutlinedIcon
+        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
+      />
+    ),
   },
   {
     title: "Food & Wine",
     description: "Tapas, restaurants and local vineyards",
     image: foodWineImage,
-    icon: <LiquorOutlinedIcon sx={{ fontSize: 18, color: "#4A4A4A" }} />,
+    icon: (
+      <LiquorOutlinedIcon
+        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
+      />
+    ),
   },
   {
     title: "Day Trips",
     description: "Museums and beautiful villages",
     image: dayTripsImage,
-    icon: <MuseumOutlinedIcon sx={{ fontSize: 18, color: "#4A4A4A" }} />,
+    icon: (
+      <MuseumOutlinedIcon
+        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
+      />
+    ),
   },
 ];
 
@@ -168,14 +184,14 @@ function AreaSection() {
                 >
                   <Box
                     sx={{
-                      width: 34,
-                      height: 34,
+                      width: { xs: 40, md: 34 },
+                      height: { xs: 40, md: 34 },
                       borderRadius: "50%",
                       backgroundColor: "#F2EFEC",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      margin: "0 auto 5px",
+                      margin: { xs: "0 auto 8px", md: "0 auto 5px" },
                     }}
                   >
                     {card.icon}
@@ -185,9 +201,9 @@ function AreaSection() {
                     sx={{
                       color: "#fff",
                       fontWeight: 500,
-                      fontSize: "0.98rem",
+                      fontSize: { xs: "1.12rem", md: "0.98rem" },
                       lineHeight: 1.25,
-                      minHeight: { xs: 22, md: 36 },
+                      minHeight: { xs: 30, md: 36 },
                       display: "flex",
                       alignItems: "flex-end",
                       justifyContent: "center",
@@ -198,11 +214,11 @@ function AreaSection() {
                   <Typography
                     sx={{
                       color: "#fff",
-                      fontWeight: 300,
-                      fontSize: "0.82rem",
-                      lineHeight: 1.45,
-                      mt: 0.2,
-                      minHeight: { xs: 22, md: 34 },
+                      fontWeight: 400,
+                      fontSize: { xs: "0.96rem", md: "0.82rem" },
+                      lineHeight: 1.4,
+                      mt: { xs: 0.35, md: 0.2 },
+                      minHeight: { xs: 30, md: 34 },
                     }}
                   >
                     {card.description}

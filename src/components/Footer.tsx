@@ -17,6 +17,7 @@ function Footer() {
     >
       <Box
         sx={{
+          order: { xs: 2, md: 1 },
           backgroundColor: "#484B37",
           borderRight: "1px solid #3E412F",
           px: { xs: 2.5, md: 3.5 },
@@ -127,7 +128,8 @@ function Footer() {
 
       <Box
         sx={{
-          height: { xs: 180, md: 200 },
+          order: { xs: 1, md: 2 },
+          height: { xs: 240, md: 200 },
           borderTop: { xs: "1px solid #3E412F", md: "none" },
           overflow: "hidden",
           position: "relative",

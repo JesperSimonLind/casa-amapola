@@ -61,14 +61,25 @@ function RoomsSection() {
       <Container maxWidth="lg">
         <Box
           sx={{
-            display: "grid",
+            display: { xs: "flex", sm: "grid" },
             gridTemplateColumns: {
-              xs: "1fr",
               sm: "repeat(2, minmax(0, 1fr))",
               lg: "repeat(4, minmax(0, 1fr))",
             },
-            gap: { xs: 3, md: 4 },
-            justifyItems: { xs: "center", sm: "stretch" },
+            gap: { xs: 2, md: 4 },
+            overflowX: { xs: "auto", sm: "visible" },
+            scrollSnapType: { xs: "x mandatory", sm: "none" },
+            scrollbarWidth: { xs: "none", sm: "auto" },
+            msOverflowStyle: { xs: "none", sm: "auto" },
+            px: { xs: 0.2, sm: 0 },
+            pb: { xs: 1, sm: 0 },
+            "&::-webkit-scrollbar": {
+              display: { xs: "none", sm: "initial" },
+            },
+            "& > *": {
+              scrollSnapAlign: { xs: "start", sm: "none" },
+              flex: { xs: "0 0 82%", sm: "none" },
+            },
           }}
         >
           {rooms.map((room) => (
