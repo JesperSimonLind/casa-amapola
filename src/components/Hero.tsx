@@ -1,5 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
@@ -35,9 +36,11 @@ function Hero() {
       }}
     >
       <Container
-        maxWidth="lg"
+        maxWidth={false}
+        disableGutters
         sx={{
           pt: { xs: "calc(env(safe-area-inset-top) + 12px)", md: 3 },
+          px: { xs: 2, sm: 3, md: 4, lg: 6, xl: "170px" },
           position: "absolute",
           top: 0,
           left: 0,
@@ -122,25 +125,31 @@ function Hero() {
             }}
           >
             <ContactButton />
-            <Box
-              component="a"
+            <Button
               href="#rooms"
               sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
+                mt: 0,
                 border: "1px solid rgba(255,255,255,0.5)",
                 color: "#fff",
-                textDecoration: "none",
+                borderRadius: 0,
+                px: 2.3,
+                py: 1.1,
                 fontWeight: 600,
+                textTransform: "none",
                 fontSize: "1rem",
                 width: { xs: 170, md: 190 },
-                py: 1.1,
+                boxShadow: "none",
+                boxSizing: "border-box",
+                justifyContent: "center",
                 bgcolor: "rgba(15, 15, 15, 0.55)",
+                "&:hover": {
+                  bgcolor: "rgba(15, 15, 15, 0.7)",
+                  boxShadow: "none",
+                },
               }}
             >
               Explore rooms
-            </Box>
+            </Button>
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "block" } }}>

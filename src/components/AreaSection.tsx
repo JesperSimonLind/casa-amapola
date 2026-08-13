@@ -2,7 +2,7 @@ import * as React from "react";
 import HikingOutlinedIcon from "@mui/icons-material/HikingOutlined";
 import LiquorOutlinedIcon from "@mui/icons-material/LiquorOutlined";
 import MuseumOutlinedIcon from "@mui/icons-material/MuseumOutlined";
-import UmbrellaOutlinedIcon from "@mui/icons-material/UmbrellaOutlined";
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -35,7 +35,7 @@ const areaCards: AreaCard[] = [
     description: "Sunny beach close by",
     image: beachesImage,
     icon: (
-      <UmbrellaOutlinedIcon
+      <BeachAccessIcon
         sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
       />
     ),

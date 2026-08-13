@@ -107,12 +107,13 @@ function ServicesSection() {
 
         <Box
           sx={{
-            display: { xs: "flex", sm: "grid" },
+            display: { xs: "flex", sm: "grid", lg: "flex" },
             gridTemplateColumns: {
               sm: "repeat(2, minmax(0, 1fr))",
-              lg: "repeat(5, minmax(0, 1fr))",
             },
             gap: { xs: 2, md: 2 },
+            flexWrap: { lg: "wrap" },
+            justifyContent: { lg: "center" },
             overflowX: { xs: "auto", sm: "visible" },
             scrollSnapType: { xs: "x mandatory", sm: "none" },
             px: { xs: 0.2, sm: 0 },
@@ -128,7 +129,11 @@ function ServicesSection() {
             <Box
               key={service.title}
               sx={{
-                flex: { xs: "0 0 84%", sm: "none" },
+                flex: {
+                  xs: "0 0 84%",
+                  sm: "none",
+                  lg: "0 0 calc((100% - 64px) / 5)",
+                },
                 scrollSnapAlign: { xs: "start", sm: "none" },
                 minHeight: { xs: 158, md: 186 },
                 px: { xs: 1.2, md: 2.25 },
@@ -139,6 +144,7 @@ function ServicesSection() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                maxWidth: { lg: "calc((100% - 64px) / 5)" },
               }}
             >
               <Box

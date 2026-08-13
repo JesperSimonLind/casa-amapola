@@ -25,7 +25,7 @@ function Footer() {
           display: "grid",
           gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr 1fr" },
           gap: { xs: 2.2, sm: 2.6 },
-          alignItems: "center",
+          alignItems: { xs: "center", md: "start" },
         }}
       >
         <Box

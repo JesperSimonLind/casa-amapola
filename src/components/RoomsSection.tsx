@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 
 import room1 from "../assets/rooms/room-1.jpg";
 import room2 from "../assets/rooms/room-2.jpg";
@@ -59,6 +60,21 @@ function RoomsSection() {
       sx={{ backgroundColor: "#FCF9F5", py: { xs: 6, md: 8 } }}
     >
       <Container maxWidth="lg">
+        <Typography
+          variant="overline"
+          sx={{
+            display: "block",
+            textAlign: "center",
+            color: "#2F2C2A",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+            fontSize: "0.8rem",
+            mb: { xs: 3, md: 4 },
+          }}
+        >
+          OUR ROOMS
+        </Typography>
+
         <Box
           sx={{
             display: { xs: "flex", sm: "grid" },

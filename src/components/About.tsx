@@ -2,13 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-
-const terraceImage =
-  "https://www.figma.com/api/mcp/asset/6d4068b0-a2a7-4b7a-803d-f4d5d3b27597.png";
-const planterImage =
-  "https://www.figma.com/api/mcp/asset/20ac7629-8dc1-4c5d-976d-f45c0b2b92ff.png";
-const sunsetImage =
-  "https://www.figma.com/api/mcp/asset/8560af27-c48a-4a31-999c-890dd763d355.png";
+import about1 from "../assets/about/about-1.jpg";
+import about2 from "../assets/about/about-2.jpg";
+import about3 from "../assets/about/about-3.jpg";
 
 function About() {
   return (
@@ -119,7 +115,7 @@ function About() {
           >
             <Box
               component="img"
-              src={terraceImage}
+              src={about1}
               alt="Terrace seating area"
               sx={{
                 width: "100%",
@@ -138,7 +134,7 @@ function About() {
             >
               <Box
                 component="img"
-                src={planterImage}
+                src={about2}
                 alt="Decorative planter on a terrace"
                 sx={{
                   width: "100%",
@@ -149,7 +145,7 @@ function About() {
               />
               <Box
                 component="img"
-                src={sunsetImage}
+                src={about3}
                 alt="Sunset over valley"
                 sx={{
                   width: "100%",

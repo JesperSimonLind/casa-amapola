@@ -54,6 +54,7 @@ function Menu() {
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
+        minWidth: 0,
         pl: { xs: 0.5, md: 0 },
         pr: { xs: 2, md: "0px" },
       }}
@@ -68,12 +69,16 @@ function Menu() {
           letterSpacing: "0.1em",
           textTransform: "none",
           p: 0,
-          ml: { xs: -0.2, md: -45 },
+          ml: 0,
           minWidth: "auto",
           fontSize: { xs: "0.95rem", md: "1.55rem" },
           display: "inline-flex",
           alignItems: "center",
           gap: { xs: 0.55, md: 1 },
+          flexShrink: 0,
+          maxWidth: { xs: "calc(100% - 52px)", lg: "none" },
+          overflow: "hidden",
+          whiteSpace: "nowrap",
         }}
       >
         <Box
@@ -86,16 +91,25 @@ function Menu() {
             display: "block",
           }}
         />
-        <Box component="span">CASA AMAPOLA</Box>
+        <Box
+          component="span"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          CASA AMAPOLA
+        </Box>
       </Button>
 
       <IconButton
         aria-label="Open menu"
         onClick={openMobileMenu}
         sx={{
-          display: { xs: "inline-flex", md: "none" },
+          display: { xs: "inline-flex", lg: "none" },
           color: "#fff",
           p: 0.4,
+          flexShrink: 0,
         }}
       >
         <MenuIcon sx={{ fontSize: 31 }} />
@@ -104,10 +118,12 @@ function Menu() {
       <List
         disablePadding
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: "none", lg: "flex" },
           alignItems: "center",
-          columnGap: "64px",
+          columnGap: { lg: "28px", xl: "64px" },
           listStyle: "none",
+          flexShrink: 1,
+          minWidth: 0,
         }}
       >
         {menuItems.map((item) => (
