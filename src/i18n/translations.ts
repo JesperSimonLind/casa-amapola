@@ -22,11 +22,7 @@ type LocalizedText = {
   heroInfoItems: string[];
   about: {
     overline: string;
-    titleLine1: string;
-    titleLine2: string;
-    paragraph1: string;
-    paragraph2: string;
-    paragraph3: string;
+    paragraphs: string[];
   };
   rooms: {
     overline: string;
@@ -62,14 +58,11 @@ type LocalizedText = {
     extrasParagraph2: string;
     extrasParagraph3: string;
     hostsTitle: string;
-    hostsParagraph1: string;
-    hostsParagraph2: string;
-    hostsParagraph3: string;
-    hostsSignature: string;
+    hostsParagraph: string;
   };
   footer: {
     reservationTitle: string;
-    reservationText: string;
+    bookingPrompt: string;
     followUs: string;
     mapTitle: string;
   };
@@ -96,14 +89,13 @@ export const translations: Record<Language, LocalizedText> = {
     heroInfoItems: ["4 unique rooms", "Rooftop terrace", "30 min from Málaga"],
     about: {
       overline: "ABOUT US",
-      titleLine1: "Living life on the",
-      titleLine2: "sunshine side",
-      paragraph1:
-        "Casa Amapola is a charming boutique Bed & Breakfast in the heart of Alhaurín el Grande. Stay in one of our four thoughtfully designed rooms and experience authentic Andalusian hospitality.",
-      paragraph2:
-        "Relax on our rooftop terrace overlooking the beautiful Guadalhorce Valley, just moments from cafés, tapas bars, and the local atmosphere.",
-      paragraph3:
-        "A peaceful retreat where traditional Spanish charm meets modern comfort, offering a warm and memorable stay in the heart of Andalusia.",
+      paragraphs: [
+        "Casa Amapola is a small Bed & Breakfast that has four tastefully decorated rooms, which of three are with ensuite whereas the smaller fourth room has a private bathroom located outside of the room. All our guest has access to the warm and relaxing roof terrace looking over the beautiful Guadalhorce valley.",
+        "Nearby Casa Amapola our guest can enjoy the genuine atmosphere of the small town of Alhaurín el Grande. A town which both offer quiet streets and resting cafes as well as vibrant restaurants and tapas bars - all an inspiring everyday life of Alhaurín el Grande.",
+        "Our vision and hope with Casa Amapola are that you as guests will not only have a pleasant stay, but also a genuine experience of Spain and the fantastic Andalusía. Casa Amapola therefore reflects both the landscape that surrounds it and is inspired by the many different trips and the background that we, as your hosts, bring with us.",
+        "Casa Amapola offers you a bohemian and genuine Spanish accommodation, in an old traditional Spanish whitewashed house but with a touch of flair and all the comforts you need.",
+        "Welcome to Casa Amapola.",
+      ],
     },
     rooms: {
       overline: "OUR ROOMS",
@@ -183,6 +175,11 @@ export const translations: Record<Language, LocalizedText> = {
             "Four rooms are available during spring and summer, and three rooms during autumn and winter. See each room for details about the available beds.",
         },
         {
+          title: "Cot",
+          description:
+            "Possibility to lend a cot in the rooms Aegean Sea and Hanoi.",
+        },
+        {
           title: "TV & Telephone",
           description:
             "There is no TV or telephone in the rooms. Enjoy each other's company :-)",
@@ -233,16 +230,12 @@ export const translations: Record<Language, LocalizedText> = {
       extrasParagraph3:
         "We can also recommend our preferred car rental service and help arrange airport transfers.",
       hostsTitle: "ABOUT YOUR HOSTS",
-      hostsParagraph1: "We are Richard and BLANK, your hosts at Casa Amapola.",
-      hostsParagraph2:
-        "Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum.",
-      hostsParagraph3:
-        "We are happy to help with tips and recommendations to make your stay unforgettable.",
-      hostsSignature: "/ Richard & BLANK",
+      hostsParagraph:
+        "We as your hosts are a globetrotter couple from Sweden that now have landed in the Guadalhorce valley. We our selves are interested in having an active lifestyle and enjoy everything from hiking in nature to finding small and interesting winerys. Come and enjoy our paradise with us. We are looking forward to meet you and help you create a meaningfull and pleasant stay.",
     },
     footer: {
-      reservationTitle: "MAKE A RESERVATION",
-      reservationText: "Book your stay easily through",
+      reservationTitle: "Call or email us to make a reservation",
+      bookingPrompt: "Or book us here",
       followUs: "FOLLOW US",
       mapTitle: "Casa Amapola on Google Maps",
     },
@@ -272,14 +265,11 @@ export const translations: Record<Language, LocalizedText> = {
     ],
     about: {
       overline: "SOBRE NOSOTROS",
-      titleLine1: "Vive la vida en el",
-      titleLine2: "lado soleado",
-      paragraph1:
+      paragraphs: [
         "Casa Amapola es un encantador Bed & Breakfast boutique en el corazón de Alhaurín el Grande. Alójate en una de nuestras cuatro habitaciones cuidadosamente diseñadas y disfruta de la auténtica hospitalidad andaluza.",
-      paragraph2:
         "Relájate en nuestra terraza en la azotea con vistas al hermoso Valle del Guadalhorce, a pocos pasos de cafeterías, bares de tapas y del ambiente local.",
-      paragraph3:
         "Un refugio tranquilo donde el encanto tradicional español se une a la comodidad moderna, ofreciendo una estancia cálida e inolvidable en el corazón de Andalucía.",
+      ],
     },
     rooms: {
       overline: "NUESTRAS HABITACIONES",
@@ -359,6 +349,11 @@ export const translations: Record<Language, LocalizedText> = {
             "Cuatro habitaciones disponibles durante la primavera y el verano, y tres durante el otoño y el invierno. Consulta cada habitación para conocer las camas disponibles.",
         },
         {
+          title: "Cuna",
+          description:
+            "Posibilidad de prestar una cuna en las habitaciones Mar Egeo y Hanói.",
+        },
+        {
           title: "TV y teléfono",
           description:
             "No hay TV ni teléfono en las habitaciones. Disfruta de la compañía del otro :-)",
@@ -409,17 +404,12 @@ export const translations: Record<Language, LocalizedText> = {
       extrasParagraph3:
         "También podemos recomendarte nuestro servicio de alquiler de coches de confianza y ayudarte a organizar el traslado desde o hasta el aeropuerto.",
       hostsTitle: "SOBRE TUS ANFITRIONES",
-      hostsParagraph1:
-        "Somos Richard y BLANK, tus anfitriones en Casa Amapola.",
-      hostsParagraph2:
-        "Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum.",
-      hostsParagraph3:
-        "Estaremos encantados de ayudarte con consejos y recomendaciones para que tu estancia sea inolvidable.",
-      hostsSignature: "/ Richard y BLANK",
+      hostsParagraph:
+        "Somos Richard y BLANK, tus anfitriones en Casa Amapola. Estaremos encantados de ayudarte con consejos y recomendaciones para que tu estancia sea inolvidable.",
     },
     footer: {
-      reservationTitle: "HAZ UNA RESERVA",
-      reservationText: "Reserva tu estancia fácilmente a través de",
+      reservationTitle: "Llámanos o escríbenos para hacer una reserva",
+      bookingPrompt: "O reserva aquí",
       followUs: "SÍGUENOS",
       mapTitle: "Casa Amapola en Google Maps",
     },
@@ -445,14 +435,11 @@ export const translations: Record<Language, LocalizedText> = {
     heroInfoItems: ["4 unika rum", "Takterrass", "30 min från Málaga"],
     about: {
       overline: "OM OSS",
-      titleLine1: "Lev livet på",
-      titleLine2: "solsidan",
-      paragraph1:
+      paragraphs: [
         "Casa Amapola är ett charmigt boutique-Bed & Breakfast i hjärtat av Alhaurín el Grande. Bo i ett av våra fyra omsorgsfullt inredda rum och upplev genuin andalusisk gästfrihet.",
-      paragraph2:
         "Koppla av på vår takterrass med utsikt över den vackra Guadalhorce-dalen, bara ett stenkast från kaféer, tapasbarer och det lokala folklivet.",
-      paragraph3:
         "En rofylld tillflyktsort där traditionell spansk charm möter modern komfort och skapar en varm och minnesvärd vistelse i hjärtat av Andalusien.",
+      ],
     },
     rooms: {
       overline: "VÅRA RUM",
@@ -532,6 +519,11 @@ export const translations: Record<Language, LocalizedText> = {
             "Fyra rum under vår och sommar och tre rum under höst och vinter. Se respektive rum för information om tillgängliga sängar.",
         },
         {
+          title: "Spjälsäng",
+          description:
+            "Möjlighet att låna spjälsäng i rummen Aegean Sea och Hanoi.",
+        },
+        {
           title: "TV & telefon",
           description:
             "Det finns ingen TV eller telefon på rummen. Njut av varandras sällskap :-)",
@@ -582,16 +574,12 @@ export const translations: Record<Language, LocalizedText> = {
       extrasParagraph3:
         "Vi kan också rekommendera vår föredragna biluthyrning och hjälpa till med transfer till och från flygplatsen.",
       hostsTitle: "OM DINA VÄRDAR",
-      hostsParagraph1: "Vi är Richard och BLANK, dina värdar på Casa Amapola.",
-      hostsParagraph2:
-        "Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum.",
-      hostsParagraph3:
-        "Vi hjälper dig gärna med tips och rekommendationer för att göra din vistelse oförglömlig.",
-      hostsSignature: "/ Richard & BLANK",
+      hostsParagraph:
+        "Vi är Richard och BLANK, dina värdar på Casa Amapola. Vi hjälper dig gärna med tips och rekommendationer för att göra din vistelse oförglömlig.",
     },
     footer: {
-      reservationTitle: "BOKA DIN VISTELSE",
-      reservationText: "Boka din vistelse enkelt via",
+      reservationTitle: "Ring eller mejla oss för att göra en bokning",
+      bookingPrompt: "Eller boka här",
       followUs: "FÖLJ OSS",
       mapTitle: "Casa Amapola på Google Maps",
     },

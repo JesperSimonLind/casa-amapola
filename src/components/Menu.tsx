@@ -54,7 +54,7 @@ function Menu() {
         disableRipple
         aria-label="Casa Amapola home"
         sx={{
-          color: "#fff",
+          color: "#000",
           fontWeight: 700,
           letterSpacing: "0.1em",
           textTransform: "none",
@@ -97,7 +97,7 @@ function Menu() {
         onClick={openMobileMenu}
         sx={{
           display: { xs: "inline-flex", lg: "none" },
-          color: "#fff",
+          color: "#000",
           p: 0.4,
           flexShrink: 0,
         }}
@@ -121,7 +121,27 @@ function Menu() {
             <Link
               href={item.href}
               underline="none"
-              sx={{ color: "#fff", fontWeight: 500, fontSize: "1.1rem" }}
+              sx={{
+                position: "relative",
+                color: "#000",
+                fontWeight: 500,
+                fontSize: "1.1rem",
+                "&::after": {
+                  content: '\"\"',
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  bottom: -5,
+                  height: 1,
+                  backgroundColor: "#000",
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 180ms ease-out",
+                },
+                "&:hover::after": {
+                  transform: "scaleX(1)",
+                },
+              }}
             >
               {item.label}
             </Link>

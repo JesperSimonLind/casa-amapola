@@ -82,7 +82,13 @@ function AreaSection() {
             alignItems: "start",
           }}
         >
-          <Box sx={{ maxWidth: 370 }}>
+          <Box
+            sx={{
+              maxWidth: 370,
+              mx: { sm: "auto", md: 0 },
+              textAlign: { sm: "center", md: "left" },
+            }}
+          >
             <Typography
               sx={{
                 fontSize: "0.82rem",

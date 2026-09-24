@@ -1,5 +1,6 @@
 import * as React from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -19,6 +20,7 @@ function Footer() {
         gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) 800px" },
         minHeight: 96,
         backgroundColor: "#484B37",
+        alignItems: "stretch",
       }}
     >
       <Box
@@ -54,18 +56,6 @@ function Footer() {
             <br />
             España / Spain
           </Typography>
-          <Link
-            href="mailto:casa_amapola@hotmail.com"
-            underline="always"
-            sx={{
-              color: "#F1EEDC",
-              fontSize: "0.94rem",
-              mt: 0.7,
-              display: "inline-block",
-            }}
-          >
-            casa_amapola@hotmail.com
-          </Link>
         </Box>
 
         <Box
@@ -74,11 +64,58 @@ function Footer() {
             borderRight: { sm: "1px solid rgba(196, 194, 181, 0.32)" },
           }}
         >
-          <Typography sx={{ color: "#E7E4D8", fontSize: "1.18rem", mb: 0.8 }}>
+          <Typography
+            variant="caption"
+            sx={{
+              display: "block",
+              color: "#E7E4D8",
+              fontSize: "1.08rem",
+              lineHeight: 1.35,
+              mb: 1.1,
+            }}
+          >
             {t.footer.reservationTitle}
           </Typography>
-          <Typography sx={{ color: "#D6D2C3", fontSize: "0.94rem", mb: 0.2 }}>
-            {t.footer.reservationText}
+          <Link
+            href="https://wa.me/34633979656"
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="none"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.8,
+              color: "#F1EEDC",
+              fontSize: "0.94rem",
+              width: "fit-content",
+              mb: 0.8,
+            }}
+          >
+            <WhatsAppIcon sx={{ fontSize: 24 }} />
+            +34633979656
+          </Link>
+          <Link
+            href="mailto:casa_amapola@hotmail.com"
+            underline="always"
+            sx={{
+              color: "#F1EEDC",
+              fontSize: "0.94rem",
+              mb: 0.8,
+              display: "inline-block",
+            }}
+          >
+            casa_amapola@hotmail.com
+          </Link>
+          <Typography
+            variant="caption"
+            sx={{
+              display: "block",
+              color: "#D6D2C3",
+              fontSize: "0.88rem",
+              mb: 0.4,
+            }}
+          >
+            {t.footer.bookingPrompt}
           </Typography>
           <Link
             component={motion.a}
@@ -89,7 +126,7 @@ function Footer() {
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             sx={{
-              mt: 0.8,
+              mt: 0.2,
               width: "fit-content",
               border: "1px solid #928E81",
               px: 1.15,
@@ -128,7 +165,7 @@ function Footer() {
               width: "fit-content",
             }}
           >
-            <InstagramIcon sx={{ color: "#E6E4D8", fontSize: 20 }} />
+            <InstagramIcon sx={{ color: "#E6E4D8", fontSize: 24 }} />
             <Typography sx={{ color: "inherit", fontSize: "0.94rem" }}>
               amapolaalhaurin
             </Typography>
@@ -139,7 +176,8 @@ function Footer() {
       <Box
         sx={{
           order: { xs: 1, md: 2 },
-          height: { xs: 240, md: 200 },
+          height: { xs: 240, md: "auto" },
+          alignSelf: "stretch",
           borderTop: { xs: "1px solid #3E412F", md: "none" },
           overflow: "hidden",
           position: "relative",

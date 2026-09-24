@@ -1,67 +1,154 @@
 import * as React from "react";
-import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/IconButton";
 import { motion } from "motion/react";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import SquareFootOutlinedIcon from "@mui/icons-material/SquareFootOutlined";
 import Typography from "@mui/material/Typography";
 
 export type RoomCardProps = {
-  image: string;
+  images: string[];
+  backgroundColor: string;
   title: string;
   description: string;
-  guests: string;
-  bed: string;
-  size: string;
   price: string;
   fromLabel: string;
   nightLabel: string;
 };
 
 function RoomCard({
-  image,
+  images,
+  backgroundColor,
   title,
   description,
-  guests,
-  bed,
-  size,
   price,
   fromLabel,
   nightLabel,
 }: RoomCardProps) {
+  const [activeImage, setActiveImage] = React.useState(0);
+  const hasMultipleImages = images.length > 1;
+
+  const showPreviousImage = () => {
+    setActiveImage(
+      (currentImage) => (currentImage + images.length - 1) % images.length,
+    );
+  };
+
+  const showNextImage = () => {
+    setActiveImage((currentImage) => (currentImage + 1) % images.length);
+  };
+
   return (
     <Card
       component={motion.article}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
       sx={{
         width: "100%",
         borderRadius: 0,
         overflow: "hidden",
-        backgroundColor: "#F7F4F1",
+        backgroundColor,
         boxShadow: "0 10px 28px rgba(46, 38, 28, 0.06)",
         border: "1px solid rgba(53, 53, 53, 0.08)",
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        "&:hover": {
-          boxShadow: "0 24px 48px rgba(46, 38, 28, 0.14)",
-        },
       }}
     >
-      <CardMedia
-        component="img"
-        image={image}
-        alt={title}
+      <Box
         sx={{
-          height: { xs: 205, sm: 180 },
-          width: "100%",
-          objectFit: "cover",
-          display: "block",
+          position: "relative",
+          height: { xs: 260, sm: 280 },
+          backgroundColor: "#D9D0C5",
         }}
-      />
+      >
+        <CardMedia
+          component="img"
+          image={images[activeImage]}
+          alt={title}
+          sx={{
+            height: "100%",
+            width: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+
+        {hasMultipleImages && (
+          <>
+            <IconButton
+              aria-label={`Show previous ${title} image`}
+              onClick={showPreviousImage}
+              sx={{
+                position: "absolute",
+                left: 8,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 32,
+                height: 32,
+                color: "#fff",
+                backgroundColor: "rgba(0, 0, 0, 0.45)",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+              }}
+            >
+              <ArrowBackIosNewIcon sx={{ fontSize: 15 }} />
+            </IconButton>
+
+            <IconButton
+              aria-label={`Show next ${title} image`}
+              onClick={showNextImage}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 32,
+                height: 32,
+                color: "#fff",
+                backgroundColor: "rgba(0, 0, 0, 0.45)",
+                "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+              }}
+            >
+              <ArrowForwardIosIcon sx={{ fontSize: 15 }} />
+            </IconButton>
+
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 10,
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: 0.5,
+              }}
+            >
+              {images.map((image, index) => (
+                <IconButton
+                  key={image}
+                  aria-label={`Show ${title} image ${index + 1}`}
+                  aria-pressed={index === activeImage}
+                  onClick={() => setActiveImage(index)}
+                  sx={{ width: 18, height: 18, p: 0 }}
+                >
+                  <Box
+                    component="span"
+                    sx={{
+                      width: index === activeImage ? 14 : 6,
+                      height: 6,
+                      borderRadius: 3,
+                      backgroundColor:
+                        index === activeImage
+                          ? "#fff"
+                          : "rgba(255, 255, 255, 0.65)",
+                      transition: "width 180ms ease-out",
+                    }}
+                  />
+                </IconButton>
+              ))}
+            </Box>
+          </>
+        )}
+      </Box>
 
       <Box
         sx={{
@@ -98,31 +185,6 @@ function RoomCard({
         >
           {description}
         </Typography>
-
-        <Box
-          sx={{ mt: 2, pt: 1.5, borderTop: "1px solid rgba(53,53,53,0.12)" }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.8 }}>
-            <PeopleAltOutlinedIcon sx={{ fontSize: 17, color: "#1D1B19" }} />
-            <Typography sx={{ fontSize: "0.9rem", color: "#1D1B19" }}>
-              {guests}
-            </Typography>
-          </Box>
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.8 }}>
-            <BedOutlinedIcon sx={{ fontSize: 17, color: "#1D1B19" }} />
-            <Typography sx={{ fontSize: "0.9rem", color: "#1D1B19" }}>
-              {bed}
-            </Typography>
-          </Box>
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <SquareFootOutlinedIcon sx={{ fontSize: 17, color: "#1D1B19" }} />
-            <Typography sx={{ fontSize: "0.9rem", color: "#1D1B19" }}>
-              {size}
-            </Typography>
-          </Box>
-        </Box>
 
         <Box
           sx={{
