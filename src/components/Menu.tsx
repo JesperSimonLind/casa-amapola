@@ -127,7 +127,7 @@ function Menu() {
                 fontWeight: 500,
                 fontSize: "1.1rem",
                 "&::after": {
-                  content: '\"\"',
+                  content: '""',
                   position: "absolute",
                   left: 0,
                   right: 0,
