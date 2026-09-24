@@ -51,7 +51,10 @@ function AreaCarousel() {
   };
 
   return (
-    <Box component="section" sx={{ backgroundColor: "#F5F1EB", pb: { xs: 6, md: 8 } }}>
+    <Box
+      component="section"
+      sx={{ backgroundColor: "#F5F1EB", pb: { xs: 6, md: 8 } }}
+    >
       <Container maxWidth="xl">
         <Box
           sx={{
@@ -67,7 +70,12 @@ function AreaCarousel() {
             component="img"
             src={areaImages[activeImage]}
             alt={`Area image ${activeImage + 1}`}
-            sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
           />
 
           <IconButton
@@ -113,7 +121,10 @@ function AreaCarousel() {
               backgroundColor: "rgba(0, 0, 0, 0.45)",
             }}
           >
-            <Typography component="span" sx={{ color: "#fff", fontSize: "0.8rem", lineHeight: 1 }}>
+            <Typography
+              component="span"
+              sx={{ color: "#fff", fontSize: "0.8rem", lineHeight: 1 }}
+            >
               {activeImage + 1} / {areaImages.length}
             </Typography>
           </Box>
