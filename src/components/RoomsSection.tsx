@@ -45,7 +45,7 @@ function RoomsSection() {
     <Box
       component="section"
       id="rooms"
-      sx={{ backgroundColor: "#FCF9F5", py: { xs: 6, md: 8 } }}
+      sx={{ backgroundColor: "var(--page-background)", py: { xs: 6, md: 8 } }}
     >
       <Container maxWidth="lg">
         <MotionReveal>

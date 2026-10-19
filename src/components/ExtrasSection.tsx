@@ -14,7 +14,10 @@ function ExtrasSection() {
   return (
     <Box
       component="section"
-      sx={{ backgroundColor: "#FCF9F5", pb: { xs: 6, md: 7 } }}
+      sx={{
+        backgroundColor: "var(--page-background-soft)",
+        pb: { xs: 6, md: 7 },
+      }}
     >
       <Container maxWidth="xl">
         <Box

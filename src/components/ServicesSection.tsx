@@ -135,7 +135,7 @@ function ServicesSection() {
       component="section"
       id="services"
       sx={{
-        backgroundColor: "#FCF9F5",
+        backgroundColor: "var(--page-background-soft)",
         py: { xs: 6, md: 7 },
       }}
     >

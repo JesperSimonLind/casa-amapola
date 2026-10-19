@@ -73,7 +73,7 @@ function About() {
       component="section"
       id="about-us"
       sx={{
-        backgroundColor: "#F5F0EA",
+        backgroundColor: "var(--page-background-light)",
         py: { xs: 6, md: 8 },
       }}
     >

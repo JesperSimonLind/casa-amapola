@@ -123,6 +123,7 @@ function Menu() {
               underline="none"
               sx={{
                 position: "relative",
+                display: "inline-block",
                 color: "#000",
                 fontWeight: 500,
                 fontSize: "1.1rem",
@@ -130,15 +131,15 @@ function Menu() {
                   content: '""',
                   position: "absolute",
                   left: 0,
-                  right: 0,
+                  width: "100%",
                   bottom: -5,
-                  height: 1,
+                  height: "1px",
                   backgroundColor: "#000",
                   transform: "scaleX(0)",
                   transformOrigin: "left",
                   transition: "transform 180ms ease-out",
                 },
-                "&:hover::after": {
+                "&:hover::after, &:focus-visible::after": {
                   transform: "scaleX(1)",
                 },
               }}

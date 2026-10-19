@@ -53,7 +53,10 @@ function AreaCarousel() {
   return (
     <Box
       component="section"
-      sx={{ backgroundColor: "#F5F1EB", pb: { xs: 6, md: 8 } }}
+      sx={{
+        backgroundColor: "var(--page-background-light)",
+        pb: { xs: 6, md: 8 },
+      }}
     >
       <Container maxWidth="xl">
         <Box

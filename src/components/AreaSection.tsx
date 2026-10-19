@@ -68,7 +68,7 @@ function AreaSection() {
       component="section"
       id="area"
       sx={{
-        backgroundColor: "#F5F1EB",
+        backgroundColor: "var(--page-background-deep)",
         py: { xs: 6, md: 8 },
       }}
     >

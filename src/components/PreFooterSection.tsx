@@ -16,7 +16,10 @@ function PreFooterSection() {
     <Box
       component="section"
       id="contact"
-      sx={{ backgroundColor: "#FCF9F5", py: { xs: 6, md: 8 } }}
+      sx={{
+        backgroundColor: "var(--page-background-soft)",
+        py: { xs: 6, md: 8 },
+      }}
     >
       <Container maxWidth="xl">
         <Box
@@ -61,7 +64,7 @@ function PreFooterSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
             sx={{
-              backgroundColor: "#F1ECE4",
+              backgroundColor: "var(--page-background-deep)",
               px: { xs: 3, md: 4 },
               py: { xs: 3.5, md: 4 },
               display: "flex",
