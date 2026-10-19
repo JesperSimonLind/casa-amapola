@@ -1,10 +1,7 @@
 import * as React from "react";
-import HikingOutlinedIcon from "@mui/icons-material/HikingOutlined";
-import LiquorOutlinedIcon from "@mui/icons-material/LiquorOutlined";
-import MuseumOutlinedIcon from "@mui/icons-material/MuseumOutlined";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
 import beachesImage from "../assets/area/beaches.jpg";
@@ -16,42 +13,13 @@ import { translations } from "../i18n/translations";
 
 type AreaCard = {
   image: string;
-  icon: React.ReactNode;
 };
 
 const areaCards: AreaCard[] = [
-  {
-    image: natureHikingImage,
-    icon: (
-      <HikingOutlinedIcon
-        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
-      />
-    ),
-  },
-  {
-    image: beachesImage,
-    icon: (
-      <BeachAccessIcon
-        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
-      />
-    ),
-  },
-  {
-    image: foodWineImage,
-    icon: (
-      <LiquorOutlinedIcon
-        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
-      />
-    ),
-  },
-  {
-    image: dayTripsImage,
-    icon: (
-      <MuseumOutlinedIcon
-        sx={{ fontSize: { xs: 22, md: 18 }, color: "#4A4A4A" }}
-      />
-    ),
-  },
+  { image: natureHikingImage },
+  { image: beachesImage },
+  { image: foodWineImage },
+  { image: dayTripsImage },
 ];
 
 function AreaSection() {
@@ -75,18 +43,13 @@ function AreaSection() {
       <Container maxWidth="xl">
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", lg: "0.72fr 1.88fr" },
-            columnGap: { xs: 0, lg: 5 },
-            rowGap: { xs: 5, lg: 0 },
-            alignItems: "start",
+            maxWidth: 760,
+            mb: { xs: 4, md: 5 },
           }}
         >
           <Box
             sx={{
-              maxWidth: 370,
-              mx: { sm: "auto", md: 0 },
-              textAlign: { sm: "center", md: "left" },
+              textAlign: "left",
             }}
           >
             <Typography
@@ -136,103 +99,115 @@ function AreaSection() {
               {t.area.paragraph2}
             </Typography>
           </Box>
+        </Box>
 
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                sm: "repeat(2, minmax(0, 1fr))",
-                lg: "repeat(4, minmax(0, 1fr))",
-              },
-              gap: { xs: 2, md: 2.2 },
-            }}
-          >
-            {cards.map((card) => (
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, minmax(0, 1fr))",
+              lg: "repeat(4, minmax(0, 1fr))",
+            },
+            columnGap: { xs: 2.5, md: 4 },
+            rowGap: { xs: 3.5, md: 5 },
+          }}
+        >
+          {cards.map((card) => (
+            <Box
+              component="figure"
+              key={card.title}
+              sx={{
+                m: 0,
+                minWidth: 0,
+              }}
+            >
               <Box
-                key={card.title}
+                component="img"
+                src={card.image}
+                alt={card.title}
                 sx={{
-                  position: "relative",
-                  minHeight: { xs: 240, md: 300 },
-                  overflow: "hidden",
+                  aspectRatio: "3 / 2",
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  display: "block",
                 }}
-              >
-                <Box
-                  component="img"
-                  src={card.image}
-                  alt={card.title}
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
+              />
 
-                <Box
+              <Box component="figcaption" sx={{ pt: { xs: 1.5, md: 2 } }}>
+                <Typography
+                  className="heading-font"
                   sx={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(to top, rgba(0, 0, 0, 0.82) 10%, rgba(0, 0, 0, 0.3) 58%, rgba(0, 0, 0, 0.16) 100%)",
-                  }}
-                />
-
-                <Box
-                  sx={{
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: { xs: 20, md: 26 },
-                    textAlign: "center",
-                    width: "86%",
+                    color: "#2F2C2A",
+                    fontWeight: 500,
+                    fontSize: { xs: "1.35rem", md: "1.55rem" },
+                    lineHeight: 1.2,
                   }}
                 >
-                  <Box
-                    sx={{
-                      width: { xs: 40, md: 34 },
-                      height: { xs: 40, md: 34 },
-                      borderRadius: "50%",
-                      backgroundColor: "#F2EFEC",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: { xs: "0 auto 8px", md: "0 auto 5px" },
-                    }}
-                  >
-                    {card.icon}
-                  </Box>
-
-                  <Typography
-                    sx={{
-                      color: "#fff",
-                      fontWeight: 500,
-                      fontSize: { xs: "1.12rem", md: "0.98rem" },
-                      lineHeight: 1.25,
-                      minHeight: { xs: 30, md: 36 },
-                      display: "flex",
-                      alignItems: "flex-end",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {card.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: "#fff",
-                      fontWeight: 400,
-                      fontSize: { xs: "0.96rem", md: "0.82rem" },
-                      lineHeight: 1.4,
-                      mt: { xs: 0.35, md: 0.2 },
-                      minHeight: { xs: 30, md: 34 },
-                    }}
-                  >
-                    {card.description}
-                  </Typography>
-                </Box>
+                  {card.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "#2F2C2A",
+                    fontWeight: 400,
+                    fontSize: { xs: "0.96rem", md: "1rem" },
+                    lineHeight: 1.6,
+                    mt: 0.5,
+                  }}
+                >
+                  {card.description}
+                </Typography>
               </Box>
-            ))}
-          </Box>
+            </Box>
+          ))}
+        </Box>
+
+        <Box
+          sx={{
+            mt: { xs: 5, md: 7 },
+            pt: { xs: 3, md: 4 },
+            borderTop: "1px solid rgba(47, 44, 42, 0.18)",
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            className="heading-font"
+            sx={{
+              color: "#2F2C2A",
+              fontSize: { xs: "1.45rem", md: "1.7rem" },
+              lineHeight: 1.2,
+              mb: 0.8,
+            }}
+          >
+            {t.area.ctaTitle}
+          </Typography>
+          <Typography
+            sx={{
+              color: "#2F2C2A",
+              fontSize: "0.98rem",
+              lineHeight: 1.65,
+              maxWidth: 620,
+              mx: "auto",
+              mb: 1.6,
+            }}
+          >
+            {t.area.ctaDescription}
+          </Typography>
+          <Link
+            href="#contact"
+            underline="none"
+            sx={{
+              color: "#4B5134",
+              fontSize: "1rem",
+              fontWeight: 600,
+              borderBottom: "1px solid currentColor",
+              pb: 0.25,
+              "&:hover": { color: "#40472e" },
+            }}
+          >
+            {t.area.ctaLink}
+          </Link>
         </Box>
       </Container>
     </Box>

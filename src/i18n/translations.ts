@@ -43,6 +43,9 @@ type LocalizedText = {
     paragraph1: string;
     paragraph2: string;
     cards: Array<{ title: string; description: string }>;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaLink: string;
   };
   services: {
     overline: string;
@@ -170,6 +173,10 @@ export const translations: Record<Language, LocalizedText> = {
           description: "Museums and beautiful villages",
         },
       ],
+      ctaTitle: "Want to discover more?",
+      ctaDescription:
+        "We'd love to share our favourite places and local recommendations. Feel free to get in touch!",
+      ctaLink: "Get in touch →",
     },
     services: {
       overline: "OUR SERVICES",
@@ -354,6 +361,10 @@ export const translations: Record<Language, LocalizedText> = {
           description: "Museos y pueblos con encanto",
         },
       ],
+      ctaTitle: "¿Quieres descubrir más?",
+      ctaDescription:
+        "Nos encantará compartir nuestros lugares favoritos y recomendaciones locales. ¡No dudes en contactarnos!",
+      ctaLink: "Ponte en contacto →",
     },
     services: {
       overline: "NUESTROS SERVICIOS",
@@ -534,6 +545,10 @@ export const translations: Record<Language, LocalizedText> = {
           description: "Museer och vackra byar",
         },
       ],
+      ctaTitle: "Vill du upptäcka mer?",
+      ctaDescription:
+        "Vi delar gärna med oss av våra favoritplatser och lokala tips. Hör gärna av dig!",
+      ctaLink: "Kontakta oss →",
     },
     services: {
       overline: "VÅRA TJÄNSTER",
