@@ -65,6 +65,11 @@ type LocalizedText = {
     bookingPrompt: string;
     followUs: string;
     mapTitle: string;
+    termsLabel: string;
+    termsTitle: string;
+    terms: string[];
+    close: string;
+    rightsReserved: string;
   };
 };
 
@@ -238,6 +243,16 @@ export const translations: Record<Language, LocalizedText> = {
       bookingPrompt: "Or book us here",
       followUs: "FOLLOW US",
       mapTitle: "Casa Amapola on Google Maps",
+      termsLabel: "Terms & Conditions",
+      termsTitle: "Terms & Conditions",
+      terms: [
+        "This website provides general information about Casa Amapola, its rooms, facilities, location, and indicative rates. Details may change; please confirm current information directly with the hosts.",
+        "A booking request is not confirmed until Casa Amapola confirms it. Before completing a reservation, confirm availability, total price, occupancy, arrival and departure details, and the cancellation and payment conditions that apply to your booking.",
+        "These terms apply to use of this website only. A confirmed accommodation booking is subject to the specific conditions communicated for that booking. Links to third-party booking, map, and social media services are provided for convenience and are governed by those services' own terms and privacy policies.",
+        "Unless otherwise stated, the text, photographs, and branding on this website belong to Casa Amapola. They may not be reproduced or used commercially without prior permission. Website information is provided in good faith but without a guarantee that it is complete or continuously up to date.",
+      ],
+      close: "Close",
+      rightsReserved: "All rights reserved.",
     },
   },
 
@@ -412,6 +427,16 @@ export const translations: Record<Language, LocalizedText> = {
       bookingPrompt: "O reserva aquí",
       followUs: "SÍGUENOS",
       mapTitle: "Casa Amapola en Google Maps",
+      termsLabel: "Términos y condiciones",
+      termsTitle: "Términos y condiciones",
+      terms: [
+        "Este sitio web ofrece información general sobre Casa Amapola, sus habitaciones, servicios, ubicación y precios orientativos. Los detalles pueden cambiar; confirma la información vigente directamente con los anfitriones.",
+        "Una solicitud de reserva no queda confirmada hasta que Casa Amapola la confirme. Antes de completar una reserva, confirma la disponibilidad, el precio total, la ocupación, las fechas de entrada y salida, y las condiciones de cancelación y pago aplicables.",
+        "Estas condiciones se aplican únicamente al uso de este sitio web. Una reserva de alojamiento confirmada estará sujeta a las condiciones específicas comunicadas para esa reserva. Los enlaces a servicios externos de reservas, mapas y redes sociales se ofrecen por comodidad y se rigen por sus propias condiciones y políticas de privacidad.",
+        "Salvo que se indique lo contrario, los textos, fotografías y elementos de marca de este sitio pertenecen a Casa Amapola. No se permite reproducirlos ni utilizarlos con fines comerciales sin autorización previa. La información se ofrece de buena fe, sin garantizar que esté completa o permanentemente actualizada.",
+      ],
+      close: "Cerrar",
+      rightsReserved: "Todos los derechos reservados.",
     },
   },
 
@@ -582,6 +607,16 @@ export const translations: Record<Language, LocalizedText> = {
       bookingPrompt: "Eller boka här",
       followUs: "FÖLJ OSS",
       mapTitle: "Casa Amapola på Google Maps",
+      termsLabel: "Villkor",
+      termsTitle: "Villkor",
+      terms: [
+        "Den här webbplatsen innehåller allmän information om Casa Amapola, rummen, faciliteterna, läget och ungefärliga priser. Uppgifter kan ändras; be värdarna bekräfta aktuell information.",
+        "En bokningsförfrågan är inte bekräftad förrän Casa Amapola har bekräftat den. Kontrollera tillgänglighet, totalpris, antal gäster, ankomst och avresa samt vilka avboknings- och betalningsvillkor som gäller innan du slutför bokningen.",
+        "Dessa villkor gäller endast användningen av webbplatsen. En bekräftad boendebokning omfattas av de särskilda villkor som meddelas för bokningen. Länkar till externa boknings-, kart- och sociala medietjänster tillhandahålls som en bekvämlighet och omfattas av respektive tjänsts egna villkor och integritetspolicy.",
+        "Om inget annat anges tillhör webbplatsens texter, fotografier och varumärkesmaterial Casa Amapola. Materialet får inte kopieras eller användas kommersiellt utan föregående tillstånd. Informationen lämnas i god tro, men vi garanterar inte att den är fullständig eller alltid aktuell.",
+      ],
+      close: "Stäng",
+      rightsReserved: "Alla rättigheter förbehållna.",
     },
   },
 };

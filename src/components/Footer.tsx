@@ -1,7 +1,14 @@
 import * as React from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import CloseIcon from "@mui/icons-material/Close";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
@@ -11,6 +18,7 @@ import { translations } from "../i18n/translations";
 function Footer() {
   const { language } = useLanguage();
   const t = translations[language];
+  const [isTermsOpen, setIsTermsOpen] = React.useState(false);
 
   return (
     <Box
@@ -174,6 +182,41 @@ function Footer() {
             </Typography>
           </Link>
         </Box>
+
+        <Box
+          sx={{
+            gridColumn: "1 / -1",
+            borderTop: "1px solid rgba(196, 194, 181, 0.32)",
+            pt: 1.2,
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 1,
+          }}
+        >
+          <Button
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded={isTermsOpen}
+            onClick={() => setIsTermsOpen(true)}
+            sx={{
+              minWidth: 0,
+              p: 0,
+              color: "#F1EEDC",
+              fontSize: "0.86rem",
+              textDecoration: "underline",
+              textUnderlineOffset: "3px",
+              textTransform: "none",
+              fontWeight: 400,
+            }}
+          >
+            {t.footer.termsLabel}
+          </Button>
+          <Typography sx={{ color: "#D6D2C3", fontSize: "0.82rem" }}>
+            © {new Date().getFullYear()} Casa Amapola. {t.footer.rightsReserved}
+          </Typography>
+        </Box>
       </Box>
 
       <Box
@@ -205,6 +248,46 @@ function Footer() {
           }}
         />
       </Box>
+
+      <Dialog
+        open={isTermsOpen}
+        onClose={() => setIsTermsOpen(false)}
+        aria-labelledby="terms-dialog-title"
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle id="terms-dialog-title" sx={{ pr: 6 }}>
+          {t.footer.termsTitle}
+          <IconButton
+            aria-label={t.footer.close}
+            onClick={() => setIsTermsOpen(false)}
+            sx={{ position: "absolute", right: 8, top: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {t.footer.terms.map((paragraph) => (
+            <Typography
+              key={paragraph}
+              component="p"
+              sx={{
+                fontSize: "0.95rem",
+                lineHeight: 1.7,
+                mb: 2,
+                "&:last-child": { mb: 0 },
+              }}
+            >
+              {paragraph}
+            </Typography>
+          ))}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsTermsOpen(false)}>
+            {t.footer.close}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

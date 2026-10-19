@@ -1,10 +1,10 @@
 import * as React from "react";
 import AcUnitOutlinedIcon from "@mui/icons-material/AcUnitOutlined";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import BeachAccessOutlinedIcon from "@mui/icons-material/BeachAccessOutlined";
 import CoffeeOutlinedIcon from "@mui/icons-material/CoffeeOutlined";
 import CountertopsOutlinedIcon from "@mui/icons-material/CountertopsOutlined";
 import FamilyRestroomOutlinedIcon from "@mui/icons-material/FamilyRestroomOutlined";
-import LocalLaundryServiceOutlinedIcon from "@mui/icons-material/LocalLaundryServiceOutlined";
 import PhoneDisabledOutlinedIcon from "@mui/icons-material/PhoneDisabledOutlined";
 import WifiIcon from "@mui/icons-material/Wifi";
 import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
@@ -34,11 +34,7 @@ const services: ServiceItem[] = [
     icon: <AcUnitOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
-    icon: (
-      <LocalLaundryServiceOutlinedIcon
-        sx={{ fontSize: 24, color: "#2F2F2F" }}
-      />
-    ),
+    icon: <BeachAccessOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
   },
   {
     icon: <CoffeeOutlinedIcon sx={{ fontSize: 24, color: "#2F2F2F" }} />,
