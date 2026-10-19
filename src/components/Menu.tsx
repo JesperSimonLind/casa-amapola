@@ -12,7 +12,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import logoImage from "../assets/logo.png";
+import logoImage from "../assets/Logo.png";
 import { useLanguage } from "../context/LanguageContext";
 import { languageOptions, translations } from "../i18n/translations";
 
