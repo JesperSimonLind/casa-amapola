@@ -22,7 +22,7 @@ function Hero() {
           xs: `url(${heroMobile})`,
           md: `url(${heroDesktop})`,
         },
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
         backgroundPosition: { xs: "center", md: "center" },
         backgroundRepeat: "no-repeat",
       }}
