@@ -65,6 +65,23 @@ function RoomsSection() {
           </Typography>
         </MotionReveal>
 
+        <MotionReveal>
+          <Typography
+            sx={{
+              maxWidth: 820,
+              mx: "auto",
+              mb: { xs: 3, md: 4 },
+              color: "#2F2C2A",
+              textAlign: "center",
+              fontSize: "14px",
+              lineHeight: 1.75,
+              whiteSpace: "pre-line",
+            }}
+          >
+            {t.rooms.introduction}
+          </Typography>
+        </MotionReveal>
+
         <MotionStagger delayChildren={0.08} staggerChildren={0.1}>
           <Box
             sx={{

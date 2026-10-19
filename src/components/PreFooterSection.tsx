@@ -15,7 +15,6 @@ function PreFooterSection() {
   return (
     <Box
       component="section"
-      id="contact"
       sx={{
         backgroundColor: "var(--page-background-soft)",
         py: { xs: 6, md: 8 },

@@ -70,6 +70,7 @@ function Footer() {
         </Box>
 
         <Box
+          id="contact"
           sx={{
             px: { sm: 2 },
             borderRight: { sm: "1px solid rgba(196, 194, 181, 0.32)" },

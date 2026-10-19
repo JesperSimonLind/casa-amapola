@@ -26,6 +26,7 @@ type LocalizedText = {
   };
   rooms: {
     overline: string;
+    introduction: string;
     from: string;
     night: string;
     list: Array<{
@@ -107,6 +108,8 @@ export const translations: Record<Language, LocalizedText> = {
     },
     rooms: {
       overline: "OUR ROOMS",
+      introduction:
+        "All rooms are delicately renovated and therefore retain the traditional stone floors and architectural details typical for the time for houses built about 150-200 years ago in Spain and in the Mediterranean.\n\nThree of the rooms also all have their own ensuite equipped with modern comfort. Our fourth bedroom and smallest room Pequeña Escandinavi has a fully equipped private bathroom located outside of the room.",
       from: "From",
       night: "/night",
       list: [
@@ -115,7 +118,7 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Our cosy room with a calm atmosphere and carefully selected details.",
           guests: "2 guests",
-          bed: "1 bed (double bed, 160 x 200 cm)",
+          bed: "1 bed (double, 160 x 200 cm)",
           size: "11 m²",
           price: "€75–€85",
         },
@@ -124,8 +127,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "A bright room inspired by coastal tones and relaxed Mediterranean living.",
           guests: "2 guests",
-          bed: "1 bed (double bed, 160 x 200 cm)",
-          size: "12 m²",
+          bed: "3 beds (2 singles + 1 double, 160 x 200 cm)",
+          size: "18 m²",
           price: "€80–€90",
         },
         {
@@ -133,8 +136,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Warm natural textures and an inviting setting inspired by southern Spain.",
           guests: "2 guests",
-          bed: "1 bed (double bed, 160 x 200 cm)",
-          size: "13 m²",
+          bed: "1 bed (double, 150 x 190 cm)",
+          size: "8 m²",
           price: "€85–€95",
         },
         {
@@ -142,8 +145,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "A refined stay with natural materials, soft light, and a relaxed countryside feel.",
           guests: "2 guests",
-          bed: "1 bed (double bed, 160 x 200 cm)",
-          size: "14 m²",
+          bed: "1 bed (single)",
+          size: "7 m²",
           price: "€90–€110",
         },
       ],
@@ -295,6 +298,8 @@ export const translations: Record<Language, LocalizedText> = {
     },
     rooms: {
       overline: "NUESTRAS HABITACIONES",
+      introduction:
+        "Todas las habitaciones han sido renovadas con delicadeza y conservan los suelos de piedra tradicionales y los detalles arquitectónicos característicos de las casas españolas y mediterráneas construidas hace 150–200 años. Tres habitaciones tienen baño privado en suite, equipado con comodidades modernas. Nuestra cuarta habitación, la más pequeña, Pequeña Escandinavia, dispone de un baño privado totalmente equipado justo fuera de la habitación.",
       from: "Desde",
       night: "/noche",
       list: [
@@ -303,7 +308,7 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Nuestra acogedora habitación, con un ambiente tranquilo y detalles cuidadosamente seleccionados.",
           guests: "2 huéspedes",
-          bed: "1 cama (cama doble, 160 x 200 cm)",
+          bed: "1 cama (doble, 160 x 200 cm)",
           size: "11 m²",
           price: "€75–€85",
         },
@@ -312,8 +317,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Una habitación luminosa inspirada en los tonos de la costa y en el relajado estilo de vida mediterráneo.",
           guests: "2 huéspedes",
-          bed: "1 cama (cama doble, 160 x 200 cm)",
-          size: "12 m²",
+          bed: "3 camas (2 individuales + 1 doble, 160 x 200 cm)",
+          size: "18 m²",
           price: "€80–€90",
         },
         {
@@ -321,8 +326,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Texturas naturales y un ambiente acogedor inspirado en el sur de España.",
           guests: "2 huéspedes",
-          bed: "1 cama (cama doble, 160 x 200 cm)",
-          size: "13 m²",
+          bed: "1 cama (doble, 150 x 190 cm)",
+          size: "8 m²",
           price: "€85–€95",
         },
         {
@@ -330,8 +335,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Una estancia elegante con materiales naturales, luz suave y un relajado ambiente rural.",
           guests: "2 huéspedes",
-          bed: "1 cama (cama doble, 160 x 200 cm)",
-          size: "14 m²",
+          bed: "1 cama (individual)",
+          size: "7 m²",
           price: "€90–€110",
         },
       ],
@@ -479,6 +484,8 @@ export const translations: Record<Language, LocalizedText> = {
     },
     rooms: {
       overline: "VÅRA RUM",
+      introduction:
+        "Alla rum har varsamt renoverats och bevarar de traditionella stengolven och arkitektoniska detaljerna som är typiska för spanska hus och medelhavshus byggda för 150–200 år sedan. Tre av rummen har egna ensuite-badrum med modern komfort. Vårt fjärde och minsta rum, Pequeña Escandinavia, har ett fullt utrustat privat badrum precis utanför rummet.",
       from: "Från",
       night: "/natt",
       list: [
@@ -496,8 +503,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Ett ljust rum inspirerat av kustnära toner och ett avslappnat medelhavsliv.",
           guests: "2 gäster",
-          bed: "1 säng (dubbelsäng, 160 x 200 cm)",
-          size: "12 m²",
+          bed: "3 sängar (2 enkelsängar + 1 dubbelsäng, 160 x 200 cm)",
+          size: "18 m²",
           price: "€80–€90",
         },
         {
@@ -505,8 +512,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "Naturliga material och en inbjudande atmosfär inspirerad av södra Spanien.",
           guests: "2 gäster",
-          bed: "1 säng (dubbelsäng, 160 x 200 cm)",
-          size: "13 m²",
+          bed: "1 säng (dubbelsäng, 150 x 190 cm)",
+          size: "8 m²",
           price: "€85–€95",
         },
         {
@@ -514,8 +521,8 @@ export const translations: Record<Language, LocalizedText> = {
           description:
             "En elegant vistelse med naturmaterial, mjukt ljus och en avslappnad lantlig känsla.",
           guests: "2 gäster",
-          bed: "1 säng (dubbelsäng, 160 x 200 cm)",
-          size: "14 m²",
+          bed: "1 säng (enkelsäng)",
+          size: "7 m²",
           price: "€90–€110",
         },
       ],

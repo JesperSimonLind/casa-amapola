@@ -1,6 +1,8 @@
 import * as React from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import SquareFootOutlinedIcon from "@mui/icons-material/SquareFootOutlined";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,6 +15,8 @@ export type RoomCardProps = {
   backgroundColor: string;
   title: string;
   description: string;
+  bed: string;
+  size: string;
   price: string;
   fromLabel: string;
   nightLabel: string;
@@ -23,6 +27,8 @@ function RoomCard({
   backgroundColor,
   title,
   description,
+  bed,
+  size,
   price,
   fromLabel,
   nightLabel,
@@ -179,13 +185,55 @@ function RoomCard({
         <Typography
           sx={{
             color: "#2F2C2A",
-            fontSize: { xs: "0.84rem", sm: "0.92rem" },
+            fontSize: "14px",
             lineHeight: 1.6,
             minHeight: { xs: 44, sm: 88 },
           }}
         >
           {description}
         </Typography>
+
+        <Box
+          sx={{
+            display: "grid",
+            gap: 0.9,
+            mt: 1.8,
+            color: "#2F2C2A",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 0.8,
+              fontSize: "14px",
+            }}
+          >
+            <BedOutlinedIcon
+              aria-hidden="true"
+              sx={{ fontSize: "1.35em", mt: "1px", flexShrink: 0 }}
+            />
+            <Typography sx={{ fontSize: "inherit", lineHeight: 1.6 }}>
+              {bed}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0.8,
+              fontSize: "14px",
+            }}
+          >
+            <SquareFootOutlinedIcon
+              aria-hidden="true"
+              sx={{ fontSize: "1.35em", flexShrink: 0 }}
+            />
+            <Typography sx={{ fontSize: "inherit", lineHeight: 1.6 }}>
+              {size}
+            </Typography>
+          </Box>
+        </Box>
 
         <Box
           sx={{
@@ -197,7 +245,7 @@ function RoomCard({
             pt: 2,
           }}
         >
-          <Typography sx={{ fontSize: "0.84rem", color: "#2F2C2A" }}>
+          <Typography sx={{ fontSize: "14px", color: "#2F2C2A" }}>
             {fromLabel}
           </Typography>
           <Typography
@@ -205,7 +253,7 @@ function RoomCard({
           >
             {price}
           </Typography>
-          <Typography sx={{ fontSize: "0.84rem", color: "#2F2C2A" }}>
+          <Typography sx={{ fontSize: "14px", color: "#2F2C2A" }}>
             {nightLabel}
           </Typography>
         </Box>
