@@ -83,6 +83,7 @@ function Menu() {
         />
         <Box
           component="span"
+          className="heading-font"
           sx={{
             overflow: "hidden",
             textOverflow: "ellipsis",

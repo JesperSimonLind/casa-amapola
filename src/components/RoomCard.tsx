@@ -161,6 +161,7 @@ function RoomCard({
         }}
       >
         <Typography
+          className="heading-font"
           sx={{
             fontSize: { xs: "1.8rem", sm: "1.45rem" },
             fontWeight: 500,

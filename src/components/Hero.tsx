@@ -70,12 +70,12 @@ function Hero() {
             <MotionStaggerItem>
               <Typography
                 component="h1"
+                className="heading-font"
                 sx={{
                   mt: 1,
                   fontWeight: 600,
                   fontSize: { xs: "3.55rem", sm: "5.5rem", md: "5rem" },
                   lineHeight: 1,
-                  fontFamily: "'EB Garamond', Georgia, serif",
                 }}
               >
                 Casa
@@ -84,11 +84,11 @@ function Hero() {
             <MotionStaggerItem>
               <Typography
                 component="h1"
+                className="heading-font"
                 sx={{
                   fontWeight: 600,
                   fontSize: { xs: "3.55rem", sm: "5.5rem", md: "5rem" },
                   lineHeight: 1,
-                  fontFamily: "'EB Garamond', Georgia, serif",
                 }}
               >
                 Amapola

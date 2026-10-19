@@ -42,7 +42,10 @@ function Footer() {
             borderRight: { sm: "1px solid rgba(196, 194, 181, 0.32)" },
           }}
         >
-          <Typography sx={{ color: "#E7E4D8", fontSize: "1.2rem", mb: 1 }}>
+          <Typography
+            className="heading-font"
+            sx={{ color: "#E7E4D8", fontSize: "1.2rem", mb: 1 }}
+          >
             CASA AMAPOLA
           </Typography>
           <Typography

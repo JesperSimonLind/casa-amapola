@@ -35,8 +35,9 @@ function ExtrasSection() {
           }}
         >
           <Typography
+            className="heading-font"
             sx={{
-              fontSize: "0.9rem",
+              fontSize: { xs: "1.2rem", md: "1.35rem" },
               color: "#2F2C2A",
               letterSpacing: "0.09em",
               mb: 2,

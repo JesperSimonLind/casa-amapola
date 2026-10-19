@@ -3,6 +3,15 @@
   --page-background-light: #fff4d8;
   --page-background-soft: #fff8e9;
   --page-background-deep: #ffedc5;
+  --heading-font: "Book Antiqua", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+.heading-font {
+  font-family: var(--heading-font);
+}
+
+.MuiTypography-root.heading-font {
+  font-family: var(--heading-font);
 }
 
 html,

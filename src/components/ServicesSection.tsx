@@ -142,10 +142,11 @@ function ServicesSection() {
       <Container maxWidth="xl">
         <MotionReveal>
           <Typography
+            className="heading-font"
             sx={{
               textAlign: "center",
               color: "#2F2C2A",
-              fontSize: "0.9rem",
+              fontSize: { xs: "1.2rem", md: "1.35rem" },
               letterSpacing: "0.09em",
               mb: { xs: 3, md: 2.5 },
               fontWeight: 600,

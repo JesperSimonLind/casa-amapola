@@ -90,8 +90,9 @@ function AreaSection() {
             }}
           >
             <Typography
+              className="heading-font"
               sx={{
-                fontSize: "0.82rem",
+                fontSize: { xs: "1.2rem", md: "1.35rem" },
                 color: "#2F2C2A",
                 letterSpacing: "0.08em",
                 mb: 1,
@@ -102,6 +103,7 @@ function AreaSection() {
             </Typography>
 
             <Typography
+              className="heading-font"
               sx={{
                 fontSize: { xs: "2.1rem", md: "2.6rem" },
                 lineHeight: 1.1,
