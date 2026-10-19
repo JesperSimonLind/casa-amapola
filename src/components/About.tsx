@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
@@ -56,6 +57,9 @@ function About() {
   const { language } = useLanguage();
   const t = translations[language];
   const [activeImage, setActiveImage] = React.useState(0);
+  const prefersReducedMotion = useReducedMotion();
+  const pointerStartX = React.useRef<number | null>(null);
+  const suppressClick = React.useRef(false);
 
   const showPreviousImage = () => {
     setActiveImage(
@@ -68,6 +72,45 @@ function About() {
     setActiveImage((currentImage) => (currentImage + 1) % aboutImages.length);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPreviousImage();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showNextImage();
+    }
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (pointerStartX.current === null) return;
+
+    const distance = event.clientX - pointerStartX.current;
+    pointerStartX.current = null;
+    if (Math.abs(distance) < 48) return;
+
+    suppressClick.current = true;
+    if (distance > 0) showPreviousImage();
+    else showNextImage();
+  };
+
+  const visibleImages = [
+    {
+      index: (activeImage + aboutImages.length - 1) % aboutImages.length,
+      position: -1,
+    },
+    { index: activeImage, position: 0 },
+    { index: (activeImage + 1) % aboutImages.length, position: 1 },
+  ];
+
+  const showImage = (imageIndex: number) => {
+    if (suppressClick.current) {
+      suppressClick.current = false;
+      return;
+    }
+    setActiveImage(imageIndex);
+  };
+
   return (
     <Box
       component="section"
@@ -77,12 +120,12 @@ function About() {
         py: { xs: 6, md: 8 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: { xs: 4, md: 10 },
+            gridTemplateColumns: { xs: "1fr", md: "0.8fr 1.2fr" },
+            gap: { xs: 4, md: 6 },
             alignItems: "center",
           }}
         >
@@ -92,20 +135,19 @@ function About() {
             >
               <Typography
                 variant="overline"
-                className="heading-font"
+                className="heading-font section-heading"
                 sx={{
                   display: "block",
                   fontWeight: 600,
                   letterSpacing: "0.1em",
                   fontSize: { xs: "1.2rem", md: "1.35rem" },
-                  mb: 2,
                   color: "#2F2C2A",
                 }}
               >
                 {t.about.overline}
               </Typography>
 
-              <Box sx={{ mt: 3, maxWidth: 440, mx: { sm: "auto", md: 0 } }}>
+              <Box sx={{ maxWidth: 440, mx: { sm: "auto", md: 0 } }}>
                 {t.about.paragraphs.map((paragraph) => (
                   <Typography
                     key={paragraph}
@@ -126,36 +168,109 @@ function About() {
 
           <MotionReveal delay={0.1} distance={36}>
             <Box
+              role="region"
+              aria-label={t.about.overline}
+              aria-roledescription="carousel"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+              onPointerDown={(event) => {
+                pointerStartX.current = event.clientX;
+              }}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={() => {
+                pointerStartX.current = null;
+              }}
               sx={{
                 position: "relative",
-                height: { xs: 360, md: 520 },
+                width: "100%",
+                aspectRatio: "1.32 / 1",
                 overflow: "hidden",
-                backgroundColor: "#D9D0C5",
+                backgroundColor: "transparent",
+                perspective: "1200px",
+                outline: "none",
+                userSelect: "none",
+                touchAction: "pan-y",
+                "&:focus-visible": {
+                  outline: "2px solid #4B5134",
+                  outlineOffset: 4,
+                },
               }}
             >
-              <Box
-                component="img"
-                src={aboutImages[activeImage].src}
-                alt={aboutImages[activeImage].alt}
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
+              {visibleImages.map(({ index, position }) => {
+                const isActive = position === 0;
+                const image = aboutImages[index];
+
+                return (
+                  <motion.button
+                    key={index}
+                    type="button"
+                    aria-label={`${isActive ? "Current image" : "Show image"} ${index + 1}: ${image.alt}`}
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={() => !isActive && showImage(index)}
+                    initial={false}
+                    animate={{
+                      left:
+                        position === -1
+                          ? "-38%"
+                          : position === 1
+                            ? "74%"
+                            : "12%",
+                      width: isActive ? "76%" : "64%",
+                      y: "-50%",
+                      height: isActive ? "100%" : "84%",
+                      rotateY: isActive ? 0 : position * -28,
+                      opacity: isActive ? 1 : 0.82,
+                    }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.62,
+                      ease: "easeInOut",
+                    }}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      zIndex: isActive ? 2 : 1,
+                      border: 0,
+                      padding: 0,
+                      overflow: "hidden",
+                      borderRadius: 7,
+                      background: "transparent",
+                      boxShadow: "none",
+                      cursor: isActive ? "default" : "pointer",
+                      transformStyle: "preserve-3d",
+                      userSelect: "none",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={image.src}
+                      alt={isActive ? image.alt : ""}
+                      draggable={false}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  </motion.button>
+                );
+              })}
 
               <IconButton
                 aria-label="Show previous image"
                 onClick={showPreviousImage}
                 sx={{
                   position: "absolute",
-                  left: 12,
+                  left: { xs: "14%", md: "15%" },
                   top: "50%",
                   transform: "translateY(-50%)",
+                  zIndex: 3,
+                  width: 38,
+                  height: 38,
                   color: "#fff",
-                  backgroundColor: "rgba(0, 0, 0, 0.45)",
-                  "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+                  backgroundColor: "rgba(38, 39, 31, 0.62)",
+                  "&:hover": { backgroundColor: "rgba(38, 39, 31, 0.82)" },
                 }}
               >
                 <ArrowBackIosNewIcon fontSize="small" />
@@ -166,12 +281,15 @@ function About() {
                 onClick={showNextImage}
                 sx={{
                   position: "absolute",
-                  right: 12,
+                  right: { xs: "14%", md: "15%" },
                   top: "50%",
                   transform: "translateY(-50%)",
+                  zIndex: 3,
+                  width: 38,
+                  height: 38,
                   color: "#fff",
-                  backgroundColor: "rgba(0, 0, 0, 0.45)",
-                  "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+                  backgroundColor: "rgba(38, 39, 31, 0.62)",
+                  "&:hover": { backgroundColor: "rgba(38, 39, 31, 0.82)" },
                 }}
               >
                 <ArrowForwardIosIcon fontSize="small" />
@@ -183,16 +301,20 @@ function About() {
                   bottom: 16,
                   left: "50%",
                   transform: "translateX(-50%)",
+                  zIndex: 3,
                   px: 1.1,
                   py: 0.45,
-                  backgroundColor: "rgba(0, 0, 0, 0.45)",
+                  borderRadius: 1,
+                  backgroundColor: "rgba(38, 39, 31, 0.62)",
                 }}
               >
                 <Typography
                   component="span"
                   sx={{ color: "#fff", fontSize: "0.8rem", lineHeight: 1 }}
                 >
-                  {activeImage + 1} / {aboutImages.length}
+                  <span aria-live="polite">
+                    {activeImage + 1} / {aboutImages.length}
+                  </span>
                 </Typography>
               </Box>
             </Box>

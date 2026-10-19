@@ -51,7 +51,7 @@ function RoomsSection() {
         <MotionReveal>
           <Typography
             variant="overline"
-            className="heading-font"
+            className="heading-font section-heading"
             sx={{
               display: "block",
               textAlign: "center",
@@ -59,7 +59,6 @@ function RoomsSection() {
               fontWeight: 600,
               letterSpacing: "0.1em",
               fontSize: { xs: "1.2rem", md: "1.35rem" },
-              mb: { xs: 3, md: 4 },
             }}
           >
             {t.rooms.overline}

@@ -44,8 +44,8 @@ function AreaSection() {
         <Box
           sx={{
             maxWidth: 760,
-            mb: { xs: 4, md: 5 },
           }}
+          className="section-intro"
         >
           <Box
             sx={{

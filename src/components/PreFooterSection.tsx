@@ -73,12 +73,11 @@ function PreFooterSection() {
             }}
           >
             <Typography
-              className="heading-font"
+              className="heading-font section-heading"
               sx={{
                 fontSize: { xs: "1.2rem", md: "1.35rem" },
                 color: "#2F2C2A",
                 letterSpacing: "0.08em",
-                mb: 2,
                 fontWeight: 600,
               }}
             >

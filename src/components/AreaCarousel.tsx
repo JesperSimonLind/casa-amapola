@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Box from "@mui/material/Box";
@@ -38,6 +39,9 @@ const areaImages = [
 
 function AreaCarousel() {
   const [activeImage, setActiveImage] = React.useState(0);
+  const prefersReducedMotion = useReducedMotion();
+  const pointerStartX = React.useRef<number | null>(null);
+  const suppressClick = React.useRef(false);
 
   const showPreviousImage = () => {
     setActiveImage(
@@ -50,48 +54,160 @@ function AreaCarousel() {
     setActiveImage((currentImage) => (currentImage + 1) % areaImages.length);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPreviousImage();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showNextImage();
+    }
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (pointerStartX.current === null) return;
+
+    const distance = event.clientX - pointerStartX.current;
+    pointerStartX.current = null;
+    if (Math.abs(distance) < 48) return;
+
+    suppressClick.current = true;
+    if (distance > 0) showPreviousImage();
+    else showNextImage();
+  };
+
+  const visibleImages = [
+    {
+      index: (activeImage + areaImages.length - 1) % areaImages.length,
+      position: -1,
+    },
+    { index: activeImage, position: 0 },
+    { index: (activeImage + 1) % areaImages.length, position: 1 },
+  ];
+
+  const showImage = (imageIndex: number) => {
+    if (suppressClick.current) {
+      suppressClick.current = false;
+      return;
+    }
+    setActiveImage(imageIndex);
+  };
+
   return (
     <Box
       component="section"
       sx={{
         backgroundColor: "var(--page-background-light)",
-        pb: { xs: 6, md: 8 },
+        py: { xs: 6, md: 8 },
       }}
     >
       <Container maxWidth="xl">
         <Box
+          role="region"
+          aria-label="Explore the area photo carousel"
+          aria-roledescription="carousel"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          onPointerDown={(event) => {
+            pointerStartX.current = event.clientX;
+          }}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={() => {
+            pointerStartX.current = null;
+          }}
           sx={{
             position: "relative",
+            width: "100%",
             maxWidth: 1080,
-            height: { xs: 330, sm: 460, md: 560 },
+            aspectRatio: "2 / 1",
             mx: "auto",
             overflow: "hidden",
-            backgroundColor: "#D9D0C5",
+            backgroundColor: "transparent",
+            perspective: "1200px",
+            outline: "none",
+            userSelect: "none",
+            touchAction: "pan-y",
+            "&:focus-visible": {
+              outline: "2px solid #4B5134",
+              outlineOffset: 4,
+            },
           }}
         >
-          <Box
-            component="img"
-            src={areaImages[activeImage]}
-            alt={`Area image ${activeImage + 1}`}
-            sx={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
+          {visibleImages.map(({ index, position }) => {
+            const isActive = position === 0;
+
+            return (
+              <motion.button
+                key={index}
+                type="button"
+                aria-label={`${isActive ? "Current area image" : "Show area image"} ${index + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => !isActive && showImage(index)}
+                initial={false}
+                animate={{
+                  left: "50%",
+                  width: isActive ? "76%" : "64%",
+                  x:
+                    position === -1
+                      ? "-137.5%"
+                      : position === 1
+                        ? "37.5%"
+                        : "-50%",
+                  y: "-50%",
+                  height: isActive ? "100%" : "84%",
+                  rotateY: isActive ? 0 : position * -28,
+                  opacity: isActive ? 1 : 0.82,
+                }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.62,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  zIndex: isActive ? 2 : 1,
+                  border: 0,
+                  padding: 0,
+                  overflow: "hidden",
+                  borderRadius: 7,
+                  background: "transparent",
+                  boxShadow: "none",
+                  cursor: isActive ? "default" : "pointer",
+                  transformStyle: "preserve-3d",
+                  userSelect: "none",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={areaImages[index]}
+                  alt={isActive ? `Area image ${index + 1}` : ""}
+                  draggable={false}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    pointerEvents: "none",
+                  }}
+                />
+              </motion.button>
+            );
+          })}
 
           <IconButton
             aria-label="Show previous area image"
             onClick={showPreviousImage}
             sx={{
               position: "absolute",
-              left: 12,
+              left: { xs: "14%", md: "15%" },
               top: "50%",
               transform: "translateY(-50%)",
+              zIndex: 3,
+              width: 38,
+              height: 38,
               color: "#fff",
-              backgroundColor: "rgba(0, 0, 0, 0.45)",
-              "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+              backgroundColor: "rgba(38, 39, 31, 0.62)",
+              "&:hover": { backgroundColor: "rgba(38, 39, 31, 0.82)" },
             }}
           >
             <ArrowBackIosNewIcon fontSize="small" />
@@ -102,12 +218,15 @@ function AreaCarousel() {
             onClick={showNextImage}
             sx={{
               position: "absolute",
-              right: 12,
+              right: { xs: "14%", md: "15%" },
               top: "50%",
               transform: "translateY(-50%)",
+              zIndex: 3,
+              width: 38,
+              height: 38,
               color: "#fff",
-              backgroundColor: "rgba(0, 0, 0, 0.45)",
-              "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.65)" },
+              backgroundColor: "rgba(38, 39, 31, 0.62)",
+              "&:hover": { backgroundColor: "rgba(38, 39, 31, 0.82)" },
             }}
           >
             <ArrowForwardIosIcon fontSize="small" />
@@ -119,16 +238,20 @@ function AreaCarousel() {
               bottom: 16,
               left: "50%",
               transform: "translateX(-50%)",
+              zIndex: 3,
               px: 1.1,
               py: 0.45,
-              backgroundColor: "rgba(0, 0, 0, 0.45)",
+              borderRadius: 1,
+              backgroundColor: "rgba(38, 39, 31, 0.62)",
             }}
           >
             <Typography
               component="span"
               sx={{ color: "#fff", fontSize: "0.8rem", lineHeight: 1 }}
             >
-              {activeImage + 1} / {areaImages.length}
+              <span aria-live="polite">
+                {activeImage + 1} / {areaImages.length}
+              </span>
             </Typography>
           </Box>
         </Box>
