@@ -87,6 +87,7 @@ function Menu() {
           sx={{
             overflow: "hidden",
             textOverflow: "ellipsis",
+            letterSpacing: "normal",
           }}
         >
           CASA AMAPOLA

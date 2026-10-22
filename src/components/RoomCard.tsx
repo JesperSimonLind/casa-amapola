@@ -2,6 +2,8 @@ import * as React from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import SquareFootOutlinedIcon from "@mui/icons-material/SquareFootOutlined";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -17,6 +19,8 @@ export type RoomCardProps = {
   description: string;
   bed: string;
   size: string;
+  bathroom: string;
+  seasonalAvailability?: string;
   price: string;
   fromLabel: string;
   nightLabel: string;
@@ -29,6 +33,8 @@ function RoomCard({
   description,
   bed,
   size,
+  bathroom,
+  seasonalAvailability,
   price,
   fromLabel,
   nightLabel,
@@ -233,6 +239,40 @@ function RoomCard({
               {size}
             </Typography>
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 0.8,
+              fontSize: "14px",
+            }}
+          >
+            <BathtubOutlinedIcon
+              aria-hidden="true"
+              sx={{ fontSize: "1.35em", mt: "1px", flexShrink: 0 }}
+            />
+            <Typography sx={{ fontSize: "inherit", lineHeight: 1.6 }}>
+              {bathroom}
+            </Typography>
+          </Box>
+          {seasonalAvailability && (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 0.8,
+                fontSize: "14px",
+              }}
+            >
+              <CalendarMonthOutlinedIcon
+                aria-hidden="true"
+                sx={{ fontSize: "1.35em", mt: "1px", flexShrink: 0 }}
+              />
+              <Typography sx={{ fontSize: "inherit", lineHeight: 1.6 }}>
+                {seasonalAvailability}
+              </Typography>
+            </Box>
+          )}
         </Box>
 
         <Box

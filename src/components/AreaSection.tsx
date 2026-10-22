@@ -78,26 +78,19 @@ function AreaSection() {
               {t.area.title}
             </Typography>
 
-            <Typography
-              sx={{
-                fontSize: "0.98rem",
-                lineHeight: 1.7,
-                color: "#2F2C2A",
-                mb: 2,
-              }}
-            >
-              {t.area.paragraph1}
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: "0.98rem",
-                lineHeight: 1.7,
-                color: "#2F2C2A",
-              }}
-            >
-              {t.area.paragraph2}
-            </Typography>
+            {t.area.paragraphs.map((paragraph, index) => (
+              <Typography
+                key={paragraph}
+                sx={{
+                  fontSize: "0.98rem",
+                  lineHeight: 1.7,
+                  color: "#2F2C2A",
+                  mb: index < t.area.paragraphs.length - 1 ? 2 : 0,
+                }}
+              >
+                {paragraph}
+              </Typography>
+            ))}
           </Box>
         </Box>
 

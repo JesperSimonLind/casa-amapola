@@ -35,14 +35,15 @@ type LocalizedText = {
       guests: string;
       bed: string;
       size: string;
+      bathroom: string;
+      seasonalAvailability?: string;
       price: string;
     }>;
   };
   area: {
     overline: string;
     title: string;
-    paragraph1: string;
-    paragraph2: string;
+    paragraphs: string[];
     cards: Array<{ title: string; description: string }>;
     ctaTitle: string;
     ctaDescription: string;
@@ -109,7 +110,7 @@ export const translations: Record<Language, LocalizedText> = {
     rooms: {
       overline: "OUR ROOMS",
       introduction:
-        "All rooms are delicately renovated and therefore retain the traditional stone floors and architectural details typical for the time for houses built about 150-200 years ago in Spain and in the Mediterranean.\n\nThree of the rooms also all have their own ensuite equipped with modern comfort. Our fourth bedroom and smallest room Pequeña Escandinavi has a fully equipped private bathroom located outside of the room.",
+        "All rooms are delicately renovated and therefore retain the traditional stone floors and architectural details typical for the time for houses built about 150-200 years ago in Spain and in the Mediterranean.\n\nThree of the rooms also all have their own ensuite equipped with modern comfort. Our fourth bedroom and smallest room Pequeña Escandinavia has a fully equipped private bathroom located outside of the room.",
       from: "From",
       night: "/night",
       list: [
@@ -120,7 +121,8 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 guests",
           bed: "1 bed (double, 160 x 200 cm)",
           size: "11 m²",
-          price: "€75–€85",
+          bathroom: "En suite",
+          price: "€70–€80",
         },
         {
           title: "Aegean Sea",
@@ -129,7 +131,8 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 guests",
           bed: "3 beds (2 singles + 1 double, 160 x 200 cm)",
           size: "18 m²",
-          price: "€80–€90",
+          bathroom: "En suite",
+          price: "€105–€115",
         },
         {
           title: "Andalucía",
@@ -138,7 +141,8 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 guests",
           bed: "1 bed (double, 150 x 190 cm)",
           size: "8 m²",
-          price: "€85–€95",
+          bathroom: "En suite",
+          price: "€60–€70",
         },
         {
           title: "Pequeña Escandinavia",
@@ -147,17 +151,21 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 guests",
           bed: "1 bed (single)",
           size: "7 m²",
-          price: "€90–€110",
+          bathroom: "Private bathroom in the hallway",
+          seasonalAvailability: "Room only available May-Oct",
+          price: "€50",
         },
       ],
     },
     area: {
       overline: "EXPLORE THE AREA",
       title: "Alhaurín el Grande & Andalusia",
-      paragraph1:
-        "A charming Spanish town at the foot of the Mijas Mountains, surrounded by nature, history, and culture.",
-      paragraph2:
-        "From beautiful beaches and mountain hikes to traditional villages, local markets, and restaurants, everything is within easy reach.",
+      paragraphs: [
+        "Alhaurín el Grande is a typically Spanish, whitewashed town of around 24,000 inhabitants, located 40 km west of Málaga, between the slopes of the Mijas mountains and the beautiful Guadalhorce Valley.",
+        "Residents live both in the pueblo (town) and the surrounding campo (countryside) and the town offers cafés, restaurants, shops, museums and beautiful scenery.",
+        "Ideally located for exploring Andalusia, it provides easy access to the beaches and coastal towns of Málaga and Marbella, as well as inland destinations such as Ronda, whitewashed villages, natural parks and vineyards.",
+        "Whether you enjoy beaches, culture, hiking or wine tasting, Alhaurín el Grande is an excellent base for discovering Andalusia.",
+      ],
       cards: [
         {
           title: "Nature & Hiking",
@@ -310,6 +318,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 huéspedes",
           bed: "1 cama (doble, 160 x 200 cm)",
           size: "11 m²",
+          bathroom: "Baño en suite",
           price: "€75–€85",
         },
         {
@@ -319,6 +328,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 huéspedes",
           bed: "3 camas (2 individuales + 1 doble, 160 x 200 cm)",
           size: "18 m²",
+          bathroom: "Baño en suite",
           price: "€80–€90",
         },
         {
@@ -328,6 +338,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 huéspedes",
           bed: "1 cama (doble, 150 x 190 cm)",
           size: "8 m²",
+          bathroom: "Baño en suite",
           price: "€85–€95",
         },
         {
@@ -337,6 +348,8 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 huéspedes",
           bed: "1 cama (individual)",
           size: "7 m²",
+          bathroom: "Baño privado en el pasillo",
+          seasonalAvailability: "Habitación disponible solo de mayo a octubre",
           price: "€90–€110",
         },
       ],
@@ -344,10 +357,10 @@ export const translations: Record<Language, LocalizedText> = {
     area: {
       overline: "DESCUBRE LA ZONA",
       title: "Alhaurín el Grande y Andalucía",
-      paragraph1:
+      paragraphs: [
         "Un encantador pueblo español a los pies de las montañas de Mijas, rodeado de naturaleza, historia y cultura.",
-      paragraph2:
         "Desde hermosas playas y rutas de senderismo hasta pueblos tradicionales, mercados locales y restaurantes, todo está al alcance.",
+      ],
       cards: [
         {
           title: "Naturaleza y senderismo",
@@ -496,6 +509,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 gäster",
           bed: "1 säng (dubbelsäng, 160 x 200 cm)",
           size: "11 m²",
+          bathroom: "Eget badrum (en suite)",
           price: "€75–€85",
         },
         {
@@ -505,6 +519,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 gäster",
           bed: "3 sängar (2 enkelsängar + 1 dubbelsäng, 160 x 200 cm)",
           size: "18 m²",
+          bathroom: "Eget badrum (en suite)",
           price: "€80–€90",
         },
         {
@@ -514,6 +529,7 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 gäster",
           bed: "1 säng (dubbelsäng, 150 x 190 cm)",
           size: "8 m²",
+          bathroom: "Eget badrum (en suite)",
           price: "€85–€95",
         },
         {
@@ -523,6 +539,8 @@ export const translations: Record<Language, LocalizedText> = {
           guests: "2 gäster",
           bed: "1 säng (enkelsäng)",
           size: "7 m²",
+          bathroom: "Privat badrum i korridoren",
+          seasonalAvailability: "Rummet är endast tillgängligt maj–oktober",
           price: "€90–€110",
         },
       ],
@@ -530,10 +548,10 @@ export const translations: Record<Language, LocalizedText> = {
     area: {
       overline: "UPPTÄCK OMRÅDET",
       title: "Alhaurín el Grande & Andalusien",
-      paragraph1:
+      paragraphs: [
         "En charmig spansk stad vid foten av Mijasbergen, omgiven av natur, historia och kultur.",
-      paragraph2:
         "Från vackra stränder och bergsvandringar till traditionella byar, lokala marknader och restauranger – allt finns inom bekvämt avstånd.",
+      ],
       cards: [
         {
           title: "Natur & vandring",
