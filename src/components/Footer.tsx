@@ -25,7 +25,10 @@ function Footer() {
       component="footer"
       sx={{
         display: "grid",
-        gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) 800px" },
+        gridTemplateColumns: {
+          xs: "minmax(0, 1fr)",
+          lg: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
+        },
         minHeight: 96,
         backgroundColor: "#484B37",
         alignItems: "stretch",
@@ -34,6 +37,7 @@ function Footer() {
       <Box
         sx={{
           order: { xs: 2, md: 1 },
+          minWidth: 0,
           backgroundColor: "#484B37",
           borderRight: "1px solid #3E412F",
           px: { xs: 2.5, md: 3.5 },
@@ -223,7 +227,8 @@ function Footer() {
       <Box
         sx={{
           order: { xs: 1, md: 2 },
-          height: { xs: 240, md: "auto" },
+          height: { xs: 240, md: 320, lg: "auto" },
+          minWidth: 0,
           alignSelf: "stretch",
           borderTop: { xs: "1px solid #3E412F", md: "none" },
           overflow: "hidden",
