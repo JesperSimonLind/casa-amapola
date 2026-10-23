@@ -20,6 +20,10 @@ Prices and photos are shared across languages; text and photo descriptions are
 edited separately for English, Spanish and Swedish. The four rooms, four area
 cards and service order are fixed so their photos, colours and icons stay matched.
 Galleries can be reordered, expanded or reduced to a minimum of one photo.
+Bulk-upload photos by dragging multiple files onto a gallery. Individual image
+descriptions are optional in every language. When missing or blank, the website
+uses the localized room name, area card title, or gallery/hosts label. Specific
+descriptions are still recommended where they help explain the photo.
 Images are displayed in full; crop them before uploading if needed.
 
 ### First-time setup
