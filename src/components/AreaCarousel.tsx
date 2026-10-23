@@ -21,6 +21,7 @@ import area11 from "../assets/area/area-11.jpeg";
 import area12 from "../assets/area/area-12.jpeg";
 import area13 from "../assets/area/area-13.jpeg";
 import { useContent } from "../context/ContentContext";
+import { ContentImage } from "../cms/content";
 
 const defaultAreaImages = [
   area1,
@@ -40,7 +41,7 @@ const defaultAreaImages = [
 
 function AreaCarousel() {
   const { media } = useContent();
-  const areaImages = media?.area ?? defaultAreaImages.map((src, index) => ({
+  const areaImages: ContentImage[] = media?.area ?? defaultAreaImages.map((src, index) => ({
     src,
     alt: `Area image ${index + 1}`,
   }));
@@ -187,6 +188,10 @@ function AreaCarousel() {
                 <Box
                   component="img"
                   src={areaImages[index].src}
+                  srcSet={areaImages[index].srcSet}
+                  sizes="(min-width: 1200px) 821px, 76vw"
+                  loading="lazy"
+                  decoding="async"
                   alt={isActive ? areaImages[index].alt : ""}
                   draggable={false}
                   sx={{

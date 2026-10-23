@@ -79,6 +79,10 @@ function RoomCard({
         <CardMedia
           component="img"
           image={images[activeImage].src}
+          srcSet={images[activeImage].srcSet}
+          sizes="(min-width: 1200px) 264px, (min-width: 600px) 45vw, 82vw"
+          loading="lazy"
+          decoding="async"
           alt={images[activeImage].alt}
           sx={{
             height: "100%",

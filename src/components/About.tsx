@@ -28,8 +28,9 @@ import about18 from "../assets/about/about-18.jpeg";
 import about19 from "../assets/about/about-19.jpeg";
 import about20 from "../assets/about/about-20.jpeg";
 import { useContent } from "../context/ContentContext";
+import { ContentImage } from "../cms/content";
 
-const defaultAboutImages = [
+const defaultAboutImages: ContentImage[] = [
   { src: about1, alt: "Terrace seating area" },
   { src: about2, alt: "Decorative planter on a terrace" },
   { src: about3, alt: "Sunset over valley" },
@@ -243,6 +244,10 @@ function About() {
                     <Box
                       component="img"
                       src={image.src}
+                      srcSet={image.srcSet}
+                      sizes="(min-width: 1536px) 700px, (min-width: 900px) 46vw, 76vw"
+                      loading="lazy"
+                      decoding="async"
                       alt={isActive ? image.alt : ""}
                       draggable={false}
                       sx={{

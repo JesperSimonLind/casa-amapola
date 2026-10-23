@@ -26,6 +26,7 @@ function AreaSection() {
   const cards = areaCards.map((card, index) => ({
     ...card,
     image: media?.areaCards[index].src ?? card.image,
+    srcSet: media?.areaCards[index].srcSet,
     alt: media?.areaCards[index].alt ?? t.area.cards[index].title,
     title: t.area.cards[index].title,
     description: t.area.cards[index].description,
@@ -118,6 +119,10 @@ function AreaSection() {
               <Box
                 component="img"
                 src={card.image}
+                srcSet={card.srcSet}
+                sizes="(min-width: 1536px) 350px, (min-width: 1200px) 23vw, (min-width: 600px) 46vw, 90vw"
+                loading="lazy"
+                decoding="async"
                 alt={card.alt}
                 sx={{
                   aspectRatio: "3 / 2",

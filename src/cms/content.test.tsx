@@ -101,10 +101,22 @@ test("rejects missing rooms, services, card images and empty galleries", () => {
 test("builds public image URLs and selects the image description language", () => {
   const result = displayMedia(media, "Spanish");
   expect(result.hosts).toEqual({
-    src: "https://cdn.sanity.io/images/pyefeumj/production/abc123-800x600.jpg?auto=format&w=1920",
+    src: "https://cdn.sanity.io/images/pyefeumj/production/abc123-800x600.jpg?auto=format&fit=max&q=75&w=960",
+    srcSet: expect.any(String),
     alt: "Foto del CMS",
   });
   expect(result.rooms.hanoi).toHaveLength(1);
+  const candidates = result.rooms.hanoi[0].srcSet!.split(", ");
+  expect(candidates.map((candidate) => candidate.split(" ")[1]))
+    .toEqual(["320w", "480w", "640w", "960w", "1280w", "1920w", "2560w"]);
+  for (const candidate of candidates) {
+    const [url, descriptor] = candidate.split(" ");
+    const params = new URL(url).searchParams;
+    expect(params.get("w")).toBe(descriptor.slice(0, -1));
+    expect(params.get("q")).toBe("75");
+    expect(params.get("fit")).toBe("max");
+    expect(params.get("auto")).toBe("format");
+  }
 });
 
 test("fetches only the singleton published documents without credentials", async () => {
@@ -267,5 +279,18 @@ test("all editable sections use CMS text and shared images; one-photo galleries 
     element.getAttribute("src")?.startsWith("https://cdn.sanity.io/"),
   );
   expect(cmsImages.length).toBeGreaterThanOrEqual(10);
+  for (const image of cmsImages) {
+    expect(image).toHaveAttribute("loading", "lazy");
+    expect(image).toHaveAttribute("decoding", "async");
+    expect(image.getAttribute("srcset")).toContain("640w");
+    expect(image.getAttribute("sizes")).toBeTruthy();
+  }
+  const hero = document.querySelector("picture img");
+  expect(hero).toHaveAttribute("fetchpriority", "high");
+  expect(hero).toHaveAttribute("loading", "eager");
+  expect(hero?.getAttribute("srcset")).toContain("320w");
+  const desktopHero = document.querySelector("picture source");
+  expect(desktopHero).toHaveAttribute("media", "(min-width: 900px)");
+  expect(desktopHero?.getAttribute("srcset")).toContain("1920w");
   expect(error).not.toHaveBeenCalled();
 });

@@ -40,6 +40,10 @@ function PreFooterSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
             src={media?.hosts.src ?? ownersImage}
+            srcSet={media?.hosts.srcSet}
+            sizes="(min-width: 1536px) 400px, (min-width: 1200px) 28vw, 100vw"
+            loading="lazy"
+            decoding="async"
             alt={media?.hosts.alt ?? "Hosts at Casa Amapola"}
             sx={{
               width: "100%",

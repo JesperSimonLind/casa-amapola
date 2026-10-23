@@ -85,7 +85,7 @@ export const siteMediaSchema = z.object({
 
 export type PageContent = z.infer<typeof pageContentSchema>;
 export type SiteMedia = z.infer<typeof siteMediaSchema>;
-export type ContentImage = { src: string; alt: string };
+export type ContentImage = { src: string; alt: string; srcSet?: string };
 export type DisplayMedia = {
   heroDesktop: ContentImage;
   heroMobile: ContentImage;

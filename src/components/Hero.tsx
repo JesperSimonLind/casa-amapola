@@ -20,15 +20,29 @@ function Hero() {
       sx={{
         position: "relative",
         minHeight: { xs: "68svh", md: "78vh" },
-        backgroundImage: {
-          xs: `url(${media?.heroMobile.src ?? heroMobile})`,
-          md: `url(${media?.heroDesktop.src ?? heroDesktop})`,
-        },
-        backgroundSize: "100% 100%",
-        backgroundPosition: { xs: "center", md: "center" },
-        backgroundRepeat: "no-repeat",
       }}
     >
+      <Box
+        component="picture"
+        sx={{ position: "absolute", inset: 0, pointerEvents: "none" }}
+      >
+        <source
+          media="(min-width: 900px)"
+          srcSet={media?.heroDesktop.srcSet ?? media?.heroDesktop.src ?? heroDesktop}
+          sizes="100vw"
+        />
+        <Box
+          component="img"
+          src={media?.heroMobile.src ?? heroMobile}
+          srcSet={media?.heroMobile.srcSet}
+          sizes="100vw"
+          alt=""
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          sx={{ display: "block", width: "100%", height: "100%", objectFit: "fill" }}
+        />
+      </Box>
       <Container
         maxWidth={false}
         disableGutters

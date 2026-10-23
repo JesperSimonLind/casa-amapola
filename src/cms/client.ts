@@ -60,17 +60,21 @@ export function displayMedia(
   language: Language,
   t: LocalizedText = translations[language],
 ): DisplayMedia {
-  const image = (value: SiteMedia["hosts"], fallback: string): ContentImage => {
+  const image = (value: SiteMedia["hosts"], fallback: string, width = 960): ContentImage => {
     const asset = value.asset._ref.slice("image-".length);
     const extensionIndex = asset.lastIndexOf("-");
     const filename = `${asset.slice(0, extensionIndex)}.${asset.slice(extensionIndex + 1)}`;
+    const base = `https://cdn.sanity.io/images/${sanityProjectId}/${sanityDataset}/${filename}`;
+    const url = (size: number) => `${base}?auto=format&fit=max&q=75&w=${size}`;
     return {
-      src: `https://cdn.sanity.io/images/${sanityProjectId}/${sanityDataset}/${filename}?auto=format&w=1920`,
+      src: url(width),
+      srcSet: [320, 480, 640, 960, 1280, 1920, 2560]
+        .map((size) => `${url(size)} ${size}w`).join(", "),
       alt: value.alt?.[language] || fallback,
     };
   };
   return {
-    heroDesktop: image(media.heroDesktop, "Casa Amapola"),
+    heroDesktop: image(media.heroDesktop, "Casa Amapola", 1920),
     heroMobile: image(media.heroMobile, "Casa Amapola"),
     about: media.about.map((photo) => image(photo, `Casa Amapola — ${t.about.overline}`)),
     area: media.area.map((photo) => image(photo, t.area.title)),

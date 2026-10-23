@@ -25,6 +25,9 @@ descriptions are optional in every language. When missing or blank, the website
 uses the localized room name, area card title, or gallery/hosts label. Specific
 descriptions are still recommended where they help explain the photo.
 Images are displayed in full; crop them before uploading if needed.
+Sanity photos use responsive widths, automatic image formats and quality 75.
+The hero loads at high priority; below-the-fold photos load lazily and decode
+asynchronously so they do not compete with the initial page content.
 
 ### First-time setup
 
