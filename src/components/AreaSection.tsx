@@ -8,8 +8,7 @@ import beachesImage from "../assets/area/beaches.jpg";
 import dayTripsImage from "../assets/area/day-trips.jpg";
 import foodWineImage from "../assets/area/food-wine.jpg";
 import natureHikingImage from "../assets/area/nature-hiking.jpg";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
 type AreaCard = {
   image: string;
@@ -23,10 +22,11 @@ const areaCards: AreaCard[] = [
 ];
 
 function AreaSection() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t, media } = useContent();
   const cards = areaCards.map((card, index) => ({
     ...card,
+    image: media?.areaCards[index].src ?? card.image,
+    alt: media?.areaCards[index].alt ?? t.area.cards[index].title,
     title: t.area.cards[index].title,
     description: t.area.cards[index].description,
   }));
@@ -118,7 +118,7 @@ function AreaSection() {
               <Box
                 component="img"
                 src={card.image}
-                alt={card.title}
+                alt={card.alt}
                 sx={{
                   aspectRatio: "3 / 2",
                   width: "100%",

@@ -1,0 +1,29 @@
+{
+  "name": "casa-amapola-studio",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "typecheck": "tsc --noEmit",
+    "login": "sanity login",
+    "seed": "sanity exec scripts/seed.ts --with-user-token",
+    "seed:check": "SANITY_SEED_DRY_RUN=1 sanity exec scripts/seed.ts",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.20.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  }
+}

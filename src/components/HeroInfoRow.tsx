@@ -4,8 +4,7 @@ import Box from "@mui/material/Box";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import Typography from "@mui/material/Typography";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
 const itemTemplates = [
   {
@@ -32,8 +31,7 @@ const itemTemplates = [
 ];
 
 function HeroInfoRow() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t } = useContent();
   const items = itemTemplates.map((item, index) => ({
     ...item,
     label: t.heroInfoItems[index],

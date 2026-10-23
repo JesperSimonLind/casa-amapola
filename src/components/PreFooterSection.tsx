@@ -5,12 +5,10 @@ import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
 
 import ownersImage from "../assets/owners.jpg";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
 function PreFooterSection() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t, media } = useContent();
 
   return (
     <Box
@@ -41,8 +39,8 @@ function PreFooterSection() {
               delay: 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            src={ownersImage}
-            alt="Hosts at Casa Amapola"
+            src={media?.hosts.src ?? ownersImage}
+            alt={media?.hosts.alt ?? "Hosts at Casa Amapola"}
             sx={{
               width: "100%",
               height: { xs: 240, sm: 320, lg: "100%" },

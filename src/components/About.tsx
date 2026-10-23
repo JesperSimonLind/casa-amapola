@@ -27,10 +27,9 @@ import about17 from "../assets/about/about-17.jpeg";
 import about18 from "../assets/about/about-18.jpeg";
 import about19 from "../assets/about/about-19.jpeg";
 import about20 from "../assets/about/about-20.jpeg";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
-const aboutImages = [
+const defaultAboutImages = [
   { src: about1, alt: "Terrace seating area" },
   { src: about2, alt: "Decorative planter on a terrace" },
   { src: about3, alt: "Sunset over valley" },
@@ -54,9 +53,10 @@ const aboutImages = [
 ];
 
 function About() {
-  const { language } = useLanguage();
-  const t = translations[language];
-  const [activeImage, setActiveImage] = React.useState(0);
+  const { t, media } = useContent();
+  const aboutImages = media?.about ?? defaultAboutImages;
+  const [imageIndex, setActiveImage] = React.useState(0);
+  const activeImage = imageIndex % aboutImages.length;
   const prefersReducedMotion = useReducedMotion();
   const pointerStartX = React.useRef<number | null>(null);
   const suppressClick = React.useRef(false);
@@ -202,7 +202,7 @@ function About() {
 
                 return (
                   <motion.button
-                    key={index}
+                    key={position}
                     type="button"
                     aria-label={`${isActive ? "Current image" : "Show image"} ${index + 1}: ${image.alt}`}
                     aria-current={isActive ? "true" : undefined}

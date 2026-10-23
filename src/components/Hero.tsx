@@ -9,8 +9,10 @@ import { MotionStagger, MotionStaggerItem } from "./MotionReveal";
 import heroDesktop from "../assets/hero/hero-desktop.jpg";
 import heroMobile from "../assets/hero/hero-mobile.png";
 import Menu from "./Menu";
+import { useContent } from "../context/ContentContext";
 
 function Hero() {
+  const { media } = useContent();
   return (
     <Box
       id="home"
@@ -19,8 +21,8 @@ function Hero() {
         position: "relative",
         minHeight: { xs: "68svh", md: "78vh" },
         backgroundImage: {
-          xs: `url(${heroMobile})`,
-          md: `url(${heroDesktop})`,
+          xs: `url(${media?.heroMobile.src ?? heroMobile})`,
+          md: `url(${media?.heroDesktop.src ?? heroDesktop})`,
         },
         backgroundSize: "100% 100%",
         backgroundPosition: { xs: "center", md: "center" },

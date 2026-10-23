@@ -10,21 +10,24 @@ import PreFooterSection from "./components/PreFooterSection";
 import RoomsSection from "./components/RoomsSection";
 import ServicesSection from "./components/ServicesSection";
 import { LanguageProvider } from "./context/LanguageContext";
+import { ContentProvider } from "./context/ContentContext";
 
 function App() {
   return (
     <LanguageProvider>
-      <MotionConfig reducedMotion="user">
-        <Hero />
-        <About />
-        <RoomsSection />
-        <ServicesSection />
-        <ExtrasSection />
-        <AreaSection />
-        <AreaCarousel />
-        <PreFooterSection />
-        <Footer />
-      </MotionConfig>
+      <ContentProvider>
+        <MotionConfig reducedMotion="user">
+          <Hero />
+          <About />
+          <RoomsSection />
+          <ServicesSection />
+          <ExtrasSection />
+          <AreaSection />
+          <AreaCarousel />
+          <PreFooterSection />
+          <Footer />
+        </MotionConfig>
+      </ContentProvider>
     </LanguageProvider>
   );
 }

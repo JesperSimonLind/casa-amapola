@@ -20,8 +20,9 @@ import area10 from "../assets/area/area-10.jpeg";
 import area11 from "../assets/area/area-11.jpeg";
 import area12 from "../assets/area/area-12.jpeg";
 import area13 from "../assets/area/area-13.jpeg";
+import { useContent } from "../context/ContentContext";
 
-const areaImages = [
+const defaultAreaImages = [
   area1,
   area2,
   area3,
@@ -38,7 +39,13 @@ const areaImages = [
 ];
 
 function AreaCarousel() {
-  const [activeImage, setActiveImage] = React.useState(0);
+  const { media } = useContent();
+  const areaImages = media?.area ?? defaultAreaImages.map((src, index) => ({
+    src,
+    alt: `Area image ${index + 1}`,
+  }));
+  const [imageIndex, setActiveImage] = React.useState(0);
+  const activeImage = imageIndex % areaImages.length;
   const prefersReducedMotion = useReducedMotion();
   const pointerStartX = React.useRef<number | null>(null);
   const suppressClick = React.useRef(false);
@@ -138,7 +145,7 @@ function AreaCarousel() {
 
             return (
               <motion.button
-                key={index}
+                key={position}
                 type="button"
                 aria-label={`${isActive ? "Current area image" : "Show area image"} ${index + 1}`}
                 aria-current={isActive ? "true" : undefined}
@@ -179,8 +186,8 @@ function AreaCarousel() {
               >
                 <Box
                   component="img"
-                  src={areaImages[index]}
-                  alt={isActive ? `Area image ${index + 1}` : ""}
+                  src={areaImages[index].src}
+                  alt={isActive ? areaImages[index].alt : ""}
                   draggable={false}
                   sx={{
                     width: "100%",

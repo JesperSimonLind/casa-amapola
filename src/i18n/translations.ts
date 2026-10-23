@@ -10,7 +10,7 @@ export const languageOptions: Array<{
   { value: "Swedish", label: "Swedish", flag: "🇸🇪" },
 ];
 
-type LocalizedText = {
+export type LocalizedText = {
   menuHeading: string;
   menuItems: Array<{ label: string; href: string }>;
   contactButton: string;

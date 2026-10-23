@@ -4,12 +4,10 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
 
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
 function ExtrasSection() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t } = useContent();
 
   return (
     <Box

@@ -11,9 +11,10 @@ import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import { motion } from "motion/react";
 import Typography from "@mui/material/Typography";
+import { ContentImage } from "../cms/content";
 
 export type RoomCardProps = {
-  images: string[];
+  images: ContentImage[];
   backgroundColor: string;
   title: string;
   description: string;
@@ -39,7 +40,8 @@ function RoomCard({
   fromLabel,
   nightLabel,
 }: RoomCardProps) {
-  const [activeImage, setActiveImage] = React.useState(0);
+  const [imageIndex, setActiveImage] = React.useState(0);
+  const activeImage = imageIndex % images.length;
   const hasMultipleImages = images.length > 1;
 
   const showPreviousImage = () => {
@@ -76,8 +78,8 @@ function RoomCard({
       >
         <CardMedia
           component="img"
-          image={images[activeImage]}
-          alt={title}
+          image={images[activeImage].src}
+          alt={images[activeImage].alt}
           sx={{
             height: "100%",
             width: "100%",
@@ -136,7 +138,7 @@ function RoomCard({
             >
               {images.map((image, index) => (
                 <IconButton
-                  key={image}
+                  key={`${image.src}-${index}`}
                   aria-label={`Show ${title} image ${index + 1}`}
                   aria-pressed={index === activeImage}
                   onClick={() => setActiveImage(index)}

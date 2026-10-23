@@ -16,8 +16,8 @@ import hanoi3 from "../assets/rooms/hanoi-3.jpeg";
 import pequena1 from "../assets/rooms/pequena-1.jpg";
 import pequena2 from "../assets/rooms/pequena-2.jpeg";
 import RoomCard from "./RoomCard";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
+import { roomIds } from "../cms/content";
 
 const roomImageSets = [
   [hanoi1, hanoi2, hanoi3],
@@ -33,11 +33,11 @@ const roomBackgroundColors = [
 ];
 
 function RoomsSection() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t, media } = useContent();
   const rooms = t.rooms.list.map((room, index) => ({
     ...room,
-    images: roomImageSets[index],
+    images: media?.rooms[roomIds[index]] ??
+      roomImageSets[index].map((src) => ({ src, alt: room.title })),
     backgroundColor: roomBackgroundColors[index],
   }));
 

@@ -13,8 +13,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { motion } from "motion/react";
 import MotionReveal from "./MotionReveal";
-import { useLanguage } from "../context/LanguageContext";
-import { translations } from "../i18n/translations";
+import { useContent } from "../context/ContentContext";
 
 type ServiceItem = {
   icon: React.ReactNode;
@@ -56,8 +55,7 @@ const services: ServiceItem[] = [
 ];
 
 function ServicesSection() {
-  const { language } = useLanguage();
-  const t = translations[language];
+  const { t } = useContent();
   const localizedServices = services.map((service, index) => ({
     ...service,
     ...t.services.list[index],
