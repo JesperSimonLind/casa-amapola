@@ -38,10 +38,10 @@ export function useContent() {
   const { language } = useLanguage();
   const { pages, media } = React.useContext(ContentContext);
   return React.useMemo(
-    () => ({
-      t: localizeContent(language, pages[language], media),
-      media: media ? displayMedia(media, language) : undefined,
-    }),
+    () => {
+      const t = localizeContent(language, pages[language], media);
+      return { t, media: media ? displayMedia(media, language, t) : undefined };
+    },
     [language, pages, media],
   );
 }

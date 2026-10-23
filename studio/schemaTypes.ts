@@ -31,14 +31,12 @@ const photo = defineType({
   fields: [
     defineField({
       name: "alt",
-      title: "Image description (accessibility)",
+      title: "Image description (optional)",
       type: "object",
-      validation: (Rule) => Rule.required(),
-      fields: [
-        requiredText("English", "English"),
-        requiredText("Spanish", "Spanish"),
-        requiredText("Swedish", "Swedish"),
-      ],
+      description: "Optional: describe what this photo shows. Leave blank to use the room or gallery label in that language.",
+      fields: ["English", "Spanish", "Swedish"].map((name) =>
+        defineField({ name, title: name, type: "string" }),
+      ),
     }),
   ],
   validation: (Rule) => Rule.required().assetRequired(),

@@ -10,7 +10,7 @@ import {
   SiteMedia,
   siteMediaSchema,
 } from "./content";
-import { Language } from "../i18n/translations";
+import { Language, LocalizedText, translations } from "../i18n/translations";
 
 export type PublishedContent = {
   pages: Partial<Record<Language, PageContent>>;
@@ -55,28 +55,32 @@ export async function loadPublishedContent(signal: AbortSignal): Promise<Publish
   return { pages, media: document ? siteMediaSchema.parse(document) : undefined };
 }
 
-export function displayMedia(media: SiteMedia, language: Language): DisplayMedia {
-  const image = (value: SiteMedia["hosts"]): ContentImage => {
+export function displayMedia(
+  media: SiteMedia,
+  language: Language,
+  t: LocalizedText = translations[language],
+): DisplayMedia {
+  const image = (value: SiteMedia["hosts"], fallback: string): ContentImage => {
     const asset = value.asset._ref.slice("image-".length);
     const extensionIndex = asset.lastIndexOf("-");
     const filename = `${asset.slice(0, extensionIndex)}.${asset.slice(extensionIndex + 1)}`;
     return {
       src: `https://cdn.sanity.io/images/${sanityProjectId}/${sanityDataset}/${filename}?auto=format&w=1920`,
-      alt: value.alt[language],
+      alt: value.alt?.[language] || fallback,
     };
   };
   return {
-    heroDesktop: image(media.heroDesktop),
-    heroMobile: image(media.heroMobile),
-    about: media.about.map(image),
-    area: media.area.map(image),
-    hosts: image(media.hosts),
-    areaCards: media.areaCards.map(image),
+    heroDesktop: image(media.heroDesktop, "Casa Amapola"),
+    heroMobile: image(media.heroMobile, "Casa Amapola"),
+    about: media.about.map((photo) => image(photo, `Casa Amapola — ${t.about.overline}`)),
+    area: media.area.map((photo) => image(photo, t.area.title)),
+    hosts: image(media.hosts, t.preFooter.hostsTitle),
+    areaCards: media.areaCards.map((photo, index) => image(photo, t.area.cards[index].title)),
     rooms: {
-      hanoi: media.rooms.hanoi.images.map(image),
-      aegean: media.rooms.aegean.images.map(image),
-      andalucia: media.rooms.andalucia.images.map(image),
-      pequena: media.rooms.pequena.images.map(image),
+      hanoi: media.rooms.hanoi.images.map((photo) => image(photo, t.rooms.list[0].title)),
+      aegean: media.rooms.aegean.images.map((photo) => image(photo, t.rooms.list[1].title)),
+      andalucia: media.rooms.andalucia.images.map((photo) => image(photo, t.rooms.list[2].title)),
+      pequena: media.rooms.pequena.images.map((photo) => image(photo, t.rooms.list[3].title)),
     },
   };
 }

@@ -121,6 +121,56 @@ test("fetches only the singleton published documents without credentials", async
   expect(options).toEqual({ signal });
 });
 
+test.each([undefined, null, {}, { English: "", Spanish: "   ", Swedish: null }])(
+  "accepts missing or blank image descriptions: %j",
+  (alt) => {
+    const noDescription = { ...photo, alt };
+    const parsed = siteMediaSchema.parse({
+      ...media,
+      heroDesktop: noDescription,
+      heroMobile: noDescription,
+      about: [noDescription],
+      area: [noDescription],
+      hosts: noDescription,
+      areaCards: Array(4).fill(noDescription),
+      rooms: Object.fromEntries(
+        Object.keys(media.rooms).map((id) => [id, { ...roomMedia, images: [noDescription] }]),
+      ),
+    });
+    for (const language of languages) {
+      const t = translations[language];
+      const result = displayMedia(parsed, language);
+      expect(result.heroDesktop.alt).toBe("Casa Amapola");
+      expect(result.heroMobile.alt).toBe("Casa Amapola");
+      expect(result.about[0].alt).toBe(`Casa Amapola — ${t.about.overline}`);
+      expect(result.area[0].alt).toBe(t.area.title);
+      expect(result.hosts.alt).toBe(t.preFooter.hostsTitle);
+      expect(result.areaCards.map((entry) => entry.alt)).toEqual(t.area.cards.map((entry) => entry.title));
+      expect(Object.values(result.rooms).map((entries) => entries[0].alt))
+        .toEqual(t.rooms.list.map((entry) => entry.title));
+    }
+  },
+);
+
+test("falls back per language and uses edited CMS labels", async () => {
+  const partialMedia = siteMediaSchema.parse({
+    ...media,
+    hosts: { ...photo, alt: { English: "Specific English description" } },
+    rooms: { ...media.rooms, hanoi: { ...roomMedia, images: [{ ...photo, alt: {} }] } },
+  });
+  const page = createPageContent("Spanish");
+  page.preFooter.hostsTitle = "CMS hosts label";
+  page.rooms.list[0].title = "CMS room name";
+  respond([page, partialMedia]);
+  renderContent();
+  expect(await screen.findByAltText("Specific English description")).toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Spanish" }));
+  expect(screen.getByAltText("CMS hosts label")).toBeInTheDocument();
+  expect(screen.getByText("CMS room name")).toBeInTheDocument();
+  const labels = displayMedia(partialMedia, "Spanish", localizeContent("Spanish", page, partialMedia));
+  expect(labels.rooms.hanoi[0].alt).toBe("CMS room name");
+});
+
 test("reports unpublished content and uses the local website content", async () => {
   respond([]);
   renderContent();

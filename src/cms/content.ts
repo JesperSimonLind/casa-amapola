@@ -53,10 +53,15 @@ export const pageContentSchema = z.object({
   }),
 });
 
-const localizedAlt = z.object({ English: text, Spanish: text, Swedish: text });
+const optionalAlt = z.string().trim().nullish();
+const localizedAlt = z.object({
+  English: optionalAlt,
+  Spanish: optionalAlt,
+  Swedish: optionalAlt,
+});
 const image = z.object({
   asset: z.object({ _ref: z.string().regex(/^image-[a-zA-Z0-9]+-\d+x\d+-[a-zA-Z0-9]+$/) }),
-  alt: localizedAlt,
+  alt: localizedAlt.nullish(),
 });
 const gallery = z.array(image).min(1);
 const roomMedia = z.object({ price: text, images: gallery });
